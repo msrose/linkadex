@@ -1,3 +1,9 @@
 class Tile < ActiveRecord::Base
-  # attr_accessible :title, :body
+  belongs_to :group
+  has_one :link
+
+  validates :group_id, :presence => true
+
+  VALID_COLOR_REGEX = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/
+  validates :border_color, :background_color, :presence => true, :format => { :with => VALID_COLOR_REGEX }
 end
