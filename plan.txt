@@ -1,0 +1,30 @@
+Models:
+  Group
+    has many tiles, dependent destroy
+    has many links, through tiles
+    title: string
+    color: string
+    collapsed: boolean
+  Tile
+    group_id: integer, index
+    has one link, dependent destroy
+    belongs to group
+    border_color: string
+    background_colour: string
+  Link
+    tile_id: integer, index
+    belongs to tile
+    href: string
+    title: string
+    color: string
+    target: string
+
+groups#index
+-shows all groups with links to tiles index page, anchor to group
+
+tiles#index
+-shows all tiles within groups
+
+Edit mode
+-shows edit and delete icons on each tile and group
+-all editing and deletion done remotely (modal dialogs)
