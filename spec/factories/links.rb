@@ -5,7 +5,7 @@ FactoryGirl.define do
     f.tile_id { FactoryGirl.create(:tile).id }
     f.href { Faker::Internet.url }
     f.title { Faker::Lorem.words(1).first.capitalize }
-    # f.color { random_hex }
+    f.color { '#' + ['A'..'F', '0'..'9'].map(&:to_a).flatten.sample(6).join }
     f.target { %w(blank self).sample }
   end
 end
