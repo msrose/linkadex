@@ -1,0 +1,6 @@
+<% if @group.valid? %>
+  $("#modal").modal("hide");
+  $("#group<%= escape_javascript(@group.id.to_s) %>").replaceWith("<%= escape_javascript(render @group) %>");
+<% else %>
+  $("#modal").html("<%= escape_javascript(render 'form') %>");
+<% end %>
