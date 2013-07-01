@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130701031804) do
+ActiveRecord::Schema.define(:version => 20130701035755) do
 
   create_table "colors", :force => true do |t|
     t.string   "hex_value"
@@ -29,6 +29,8 @@ ActiveRecord::Schema.define(:version => 20130701031804) do
     t.datetime "updated_at",                :null => false
   end
 
+  add_index "groups", ["color_id"], :name => "index_groups_on_color_id"
+
   create_table "links", :force => true do |t|
     t.integer  "tile_id"
     t.string   "title"
@@ -39,6 +41,7 @@ ActiveRecord::Schema.define(:version => 20130701031804) do
     t.datetime "updated_at",                :null => false
   end
 
+  add_index "links", ["color_id"], :name => "index_links_on_color_id"
   add_index "links", ["tile_id"], :name => "index_links_on_tile_id", :unique => true
 
   create_table "tiles", :force => true do |t|
@@ -49,6 +52,8 @@ ActiveRecord::Schema.define(:version => 20130701031804) do
     t.datetime "updated_at",                         :null => false
   end
 
+  add_index "tiles", ["background_color_id"], :name => "index_tiles_on_background_color_id"
+  add_index "tiles", ["border_color_id"], :name => "index_tiles_on_border_color_id"
   add_index "tiles", ["group_id"], :name => "index_tiles_on_group_id"
 
 end
