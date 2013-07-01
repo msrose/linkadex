@@ -6,6 +6,6 @@ end
 
 FactoryGirl.define do
   factory :color do |f|
-    f.hex_val { random_hex }
+    f.hex_value { random_hex }
   end
 end

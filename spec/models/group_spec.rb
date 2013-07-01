@@ -20,26 +20,8 @@ describe Group do
     it { should_not be_valid }
   end
 
-  describe "color" do
-    context "with a valid color" do
-      valid_colors = ["#fff", "#abcdef", "#777", "#193599"]
-      valid_colors.each do |color|
-        before { group.color = color }
-        it { should be_valid }
-      end
-    end
-
-    context "not provided" do
-      before { group.color = " " }
-      it { should_not be_valid }
-    end
-
-    context "with an invalid color format" do
-      invalid_colors = ["llama", "#ab123z", "#~%333d", "#39923"]
-      invalid_colors.each do |color|
-        before { group.color = color }
-        it { should_not be_valid }
-      end
-    end
+  describe "without a color" do
+    before { group.color = nil }
+    it { should_not be_valid }
   end
 end
