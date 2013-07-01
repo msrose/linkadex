@@ -1,0 +1,8 @@
+.color{ :id => "color#{color.id}" }
+  .row
+    .span5.palette{ :style => "background-color: #{color.hex_value}" }
+    .span5.color-label= color.alias.blank? ? color.hex_value : color.alias
+    .span2
+      .pull-right
+        = link_to icon_for(:edit), edit_color_path(color), :remote => true
+        = link_to icon_for(:remove), color_path(color), :remote => true, :method => :delete, :confirm => "Remove color from palette?"

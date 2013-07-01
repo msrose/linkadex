@@ -1,0 +1,6 @@
+<% if @color.valid? %>
+  $("#modal").modal("hide");
+  $("#color<%= escape_javascript(@color.id.to_s) %>").replaceWith("<%= escape_javascript(render @color) %>");
+<% else %>
+  $("#modal").html("<%= escape_javascript(render 'form') %>");
+<% end %>
