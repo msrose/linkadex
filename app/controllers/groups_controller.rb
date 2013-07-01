@@ -21,6 +21,11 @@ class GroupsController < ApplicationController
     @groups = Group.all
   end
 
+  def destroy
+    @group = Group.find(params[:id])
+    @group.destroy
+  end
+
   private
 
     def load_colors
