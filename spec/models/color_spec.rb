@@ -7,6 +7,8 @@ describe Color do
 
   let(:color) { FactoryGirl.create(:color) }
 
+  subject { color }
+
   describe "with a valid hex value" do
     valid_hex = ["#fff", "#abcdef", "#777", "#193599"]
     valid_hex.each do |hex|
