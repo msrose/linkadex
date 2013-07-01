@@ -1,0 +1,26 @@
+.modal-header
+  %button{ :type => 'button', :class => 'close', 'data-dismiss' => 'modal', 'aria-hidden' => 'true' }= "&times;".html_safe
+  %h3#modal_label= "#{@verb} Group"
+.modal-body
+  - if @group.errors.any?
+    .alert.alert-error
+      %strong The following errors occurred:
+      %ul
+        - @group.errors.full_messages.each do |msg|
+          %li= msg
+  = form_for @group, :remote => true, :html => { :class => 'form-horizontal' } do |f|
+    .control-group
+      = f.label :title, :class => 'control-label'
+      .controls
+        = f.text_field :title
+    .control-group
+      = f.label :color, :class => 'control-label'
+      .controls
+        = f.select :color, options_for_select(@colors, @group.color ? @group.color.id : @colors.first[1])
+    .control-group
+      = f.label :collapsed, "Collapse?", :checked => @group.collapsed?, :class => 'control-label'
+      .controls
+        = f.check_box :collapsed
+    .control-group
+      .controls
+        = f.submit "#{@verb} Group", :class => 'btn btn-primary'

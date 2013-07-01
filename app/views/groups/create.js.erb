@@ -1,0 +1,6 @@
+<% if @group.valid? %>
+  $("#modal").modal("hide");
+  $("#groups").prepend("<%= escape_javascript(render @group) %>");
+<% else %>
+  $("#modal").html("<%= escape_javascript(render 'form') %>");
+<% end %>
