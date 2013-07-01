@@ -1,5 +1,6 @@
 Linkage::Application.routes.draw do
   resources :groups, :except => :show
+  resources :colors, :except => :show
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

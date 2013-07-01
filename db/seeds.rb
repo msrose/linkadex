@@ -10,9 +10,12 @@ Color.destroy_all
 Group.destroy_all
 
 10.times do
-  Color.create(:hex_value => '#' + ['A'..'F', '0'..'9'].map(&:to_a).flatten.sample(6).join)
+  Color.create(:hex_value => '#' + ['A'..'F', '0'..'9'].map(&:to_a).flatten.sample(6).join,
+               :alias => [nil, Faker::Lorem.words(1).first.capitalize].sample)
 end
 
-5.times do
-  Group.create(:title => Faker::Lorem.words(1).first.capitalize, :color_id => Color.all.sample.id, :collapsed => [true, false].sample)
+9.times do
+  Group.create(:title => Faker::Lorem.words(1).first.capitalize,
+               :color_id => Color.all.sample.id,
+               :collapsed => [true, false].sample)
 end

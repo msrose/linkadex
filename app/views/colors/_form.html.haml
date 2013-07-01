@@ -1,0 +1,22 @@
+.modal-header
+  %button{ :type => 'button', :class => 'close', 'data-dismiss' => 'modal', 'aria-hidden' => 'true' }= "&times;".html_safe
+  %h3#modal_label= "#{@verb} Color"
+.modal-body
+  - if @color.errors.any?
+    .alert.alert-error
+      %strong The following errors occurred:
+      %ul
+        - @color.errors.full_messages.each do |msg|
+          %li= msg
+  = form_for @color, :remote => true, :html => { :class => 'form-horizontal' } do |f|
+    .control-group
+      = f.label :hex_value, :class => 'control-label'
+      .controls
+        = f.text_field :hex_value
+    .control-group
+      = f.label :alias, :class => 'control-label'
+      .controls
+        = f.text_field :alias
+    .control-group
+      .controls
+        = f.submit "#{@verb} Color", :class => 'btn btn-primary'
