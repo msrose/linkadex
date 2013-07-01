@@ -1,4 +1,5 @@
 class Link < ActiveRecord::Base
+  belongs_to :group
   belongs_to :tile
   belongs_to :color
 

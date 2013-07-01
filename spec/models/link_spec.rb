@@ -10,6 +10,7 @@ describe Link do
   subject { link }
 
   it { should respond_to(:tile) }
+  it { should respond_to(:group) }
   it { should respond_to(:href) }
   it { should respond_to(:title) }
   it { should respond_to(:color) }
