@@ -38,6 +38,6 @@ class GroupsController < ApplicationController
     end
 
     def load_colors
-      @colors = Color.all.collect { |color| [color.alias || color.hex_value, color.id] }
+      @colors = Color.all.collect { |color| [color.alias.blank? ? color.hex_value : color.alias, color.id] }
     end
 end
