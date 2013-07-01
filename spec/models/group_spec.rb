@@ -24,4 +24,9 @@ describe Group do
     before { group.color = nil }
     it { should_not be_valid }
   end
+
+  describe "with a duplicate title" do
+    before { @duplicate_group = FactoryGirl.build(:group, :title => group.title) }
+    specify { @duplicate_group.should_not be_valid }
+  end
 end

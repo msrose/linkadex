@@ -3,5 +3,6 @@ class Group < ActiveRecord::Base
   has_many :links, :through => :tiles
   belongs_to :color
 
-  validates :title, :color_id, :presence => true
+  validates :color_id, :presence => true
+  validates :title, :presence => true, :uniqueness => true
 end

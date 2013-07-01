@@ -10,6 +10,7 @@ describe Link do
   subject { link }
 
   it { should respond_to(:tile) }
+  it { should respond_to(:group) }
   it { should respond_to(:href) }
   it { should respond_to(:title) }
   it { should respond_to(:color) }
@@ -38,5 +39,15 @@ describe Link do
   describe "without a target" do
     before { link.target = nil }
     it { should_not be_valid }
+  end
+
+  describe "with a duplicate href" do
+    before { @duplicate_link = FactoryGirl.build(:link, :href => link.href) }
+    specify { @duplicate_link.should_not be_valid }
+  end
+
+  describe "with a duplicate title" do
+    before { @duplicate_link = FactoryGirl.build(:link, :title => link.title) }
+    specify { @duplicate_link.should_not be_valid }
   end
 end
