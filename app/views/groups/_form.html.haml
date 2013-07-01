@@ -1,0 +1,16 @@
+.modal-header
+  %button{ :type => 'button', :class => 'close', 'data-dismiss' => 'modal', 'aria-hidden' => 'true' }= "&times;".html_safe
+  %h3#modal_label= "#{@verb} Group"
+.modal-body
+  = form_for @group, :remote => true, :html => { :class => 'form-horizontal' } do |f|
+    .control-group
+      = f.label :title, :class => 'control-label'
+      .controls
+        = f.text_field :title
+    .control-group
+      = f.label :color, :class => 'control-label'
+      .controls
+        = f.select :color, options_for_select(@colors, @group.color ? @group.color.id : nil)
+    .control-group
+      .controls
+        = f.submit
