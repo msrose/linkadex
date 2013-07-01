@@ -16,7 +16,10 @@ class GroupsController < ApplicationController
   end
 
   def update
-
+    @group = Group.find(params[:id])
+    @group.assign_attributes(group_params)
+    @group.color = Color.find(params[:group][:color])
+    @group.save
   end
 
   def index
