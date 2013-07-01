@@ -21,6 +21,11 @@ describe Color do
     end
   end
 
+  describe "with a duplicate hex value" do
+    before { @duplicate_color = FactoryGirl.build(:color, :hex_value => color.hex_value) }
+    specify { @duplicate_color.should_not be_valid }
+  end
+
   describe "with a hex value not provided" do
     before { color.hex_value = " " }
     it { should_not be_valid }
