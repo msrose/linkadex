@@ -9,6 +9,10 @@ describe Color do
 
   subject { color }
 
+  it { should respond_to(:groups) }
+  it { should respond_to(:tiles) }
+  it { should respond_to(:links) }
+
   describe "with a valid hex value" do
     valid_hex = ["#fff", "#abcdef", "#777", "#193599"]
     valid_hex.each do |hex|
