@@ -19,4 +19,4 @@
         = f.select :color, options_for_select(@colors, @group.color ? @group.color.id : @colors.first[1])
     .control-group
       .controls
-        = f.submit
+        = f.submit "#{@verb} Group", :class => 'btn btn-primary'
