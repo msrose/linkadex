@@ -1,0 +1,4 @@
+.group{ :id => "group#{group.id}" }
+  %h2= group.title
+  = link_to "Edit group", edit_group_path(group)
+  = link_to "Delete group", group_path(group), :method => :delete
