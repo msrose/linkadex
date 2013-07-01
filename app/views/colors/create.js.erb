@@ -1,0 +1,6 @@
+<% if @color.valid? %>
+  $("#modal").modal("hide");
+  $("#colors").prepend("<%= escape_javascript(render @color) %>");
+<% else %>
+  $("#modal").html("<%= escape_javascript(render 'form') %>");
+<% end %>
