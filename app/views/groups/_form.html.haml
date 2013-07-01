@@ -18,5 +18,9 @@
       .controls
         = f.select :color, options_for_select(@colors, @group.color ? @group.color.id : @colors.first[1])
     .control-group
+      = f.label :collapsed, "Collapse?", :checked => @group.collapsed?, :class => 'control-label'
+      .controls
+        = f.check_box :collapsed
+    .control-group
       .controls
         = f.submit "#{@verb} Group", :class => 'btn btn-primary'

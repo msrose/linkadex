@@ -34,7 +34,7 @@ class GroupsController < ApplicationController
   private
 
     def group_params
-      params.require(:group).permit(:title)
+      params.require(:group).permit(:title, :collapsed)
     end
 
     def load_colors
