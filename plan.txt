@@ -3,21 +3,30 @@ Models:
     has many tiles, dependent destroy
     has many links, through tiles
     title: string
-    color: string
+    color_id: integer
+    belongs to color, color
     collapsed: boolean
   Tile
     group_id: integer, index
+    border_color_id: integer, index
+    background_color_id: integer, index
     has one link, dependent destroy
     belongs to group
-    border_color: string
-    background_colour: string
+    belongs to border_color, color, foreign key border_color_id
+    belongs to background_colour, color, foreign key background_color_id
   Link
     tile_id: integer, index
+    color_id: color, index
+    belongs to color
     belongs to tile
     href: string
     title: string
-    color: string
     target: string
+  Color
+    has many groups
+    has many tiles
+    has many links
+    hex_value: string
 
 groups#index
 -shows all groups with links to tiles index page, anchor to group
