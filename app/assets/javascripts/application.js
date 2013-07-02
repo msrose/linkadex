@@ -15,3 +15,13 @@
 //= require bootstrap
 //= require bootstrap-colorpicker.js
 //= require_tree .
+
+$(document).ready(function() {
+  $("#modal").on("hidden", function() {
+    $("body").css({ overflow: "inherit" })
+  });
+
+  $("#modal").on("shown", function() {
+    $("body").css({ overflow: "hidden" })
+  });
+});
