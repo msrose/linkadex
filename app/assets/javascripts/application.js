@@ -25,3 +25,8 @@ $(document).ready(function() {
     $("body").css({ overflow: "hidden" })
   });
 });
+
+$(document).on("change", ".color-select", function(event) {
+  var hex_value = $(this).find(":selected").data("hex");
+  $(this).next("span.color-select").css({ backgroundColor: hex_value });
+});
