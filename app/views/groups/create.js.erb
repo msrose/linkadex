@@ -3,4 +3,5 @@
   $("#groups").prepend("<%= escape_javascript(render @group) %>");
 <% else %>
   $("#modal").html("<%= escape_javascript(render 'form') %>");
+  <%= render 'shared/colorpicker' %>
 <% end %>
