@@ -13,4 +13,20 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
+//= require bootstrap-colorpicker.js
 //= require_tree .
+
+$(document).ready(function() {
+  $("#modal").on("hidden", function() {
+    $("body").css({ overflow: "inherit" })
+  });
+
+  $("#modal").on("shown", function() {
+    $("body").css({ overflow: "hidden" })
+  });
+});
+
+$(document).on("change", ".color-select", function(event) {
+  var hex_value = $(this).find(":selected").data("hex");
+  $(this).next("span.color-select").css({ backgroundColor: hex_value });
+});
