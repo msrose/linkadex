@@ -11,7 +11,7 @@
       .controls
         .input-append
           = f.select :color, options_for_select(@colors, @group.color ? @group.color.id : @colors.first[1]), {}, :class => 'color-select'
-          %span.add-on.color-select{ :style => "background-color: #{@group.color ? @group.color.hex_value : Color.find(@colors.first[1]).hex_value}" }
+          %span.add-on.color-select{ :style => "background-color: #{@group.color ? @group.color.hex_value : @first_color.hex_value}" }
     .control-group
       = f.label :collapsed, "Collapse?", :checked => @group.collapsed?, :class => 'control-label'
       .controls
