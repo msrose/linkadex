@@ -18,11 +18,13 @@
 
 $(document).ready(function() {
   $("#modal").on("hidden", function() {
-    $("body").css({ overflow: "inherit" })
+    $("body").css({ overflow: "inherit" });
+    $("#modal .colorpicker-input").colorpicker("hide");
   });
 
   $("#modal").on("shown", function() {
-    $("body").css({ overflow: "hidden" })
+    $("body").css({ overflow: "hidden" });
+    $("#modal .colorpicker-input").colorpicker();
   });
 });
 
