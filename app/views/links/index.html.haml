@@ -1,4 +1,4 @@
-= link_to icon_for("plus-sign") + ' Create', new_group_link_path(@group), :class => "btn pull-right link-create"
-%h1= "Links for #{@group.title}"
+= link_to icon_for("plus-sign") + ' Create', new_group_link_path(@group), :class => "btn pull-right link-create", :remote => true
+%h1= "Links in #{@group.title}"
 #links
   = render @links

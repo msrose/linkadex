@@ -36,9 +36,4 @@ class GroupsController < ApplicationController
     def group_params
       params.require(:group).permit(:title, :collapsed)
     end
-
-    def load_colors
-      @colors = Color.all.collect { |color| [color.alias.blank? ? color.hex_value : color.alias, color.id, { 'data-hex' => color.hex_value }] }
-      @first_color = Color.find(@colors.first[1])
-    end
 end

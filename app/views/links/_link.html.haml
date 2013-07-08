@@ -2,4 +2,4 @@
   .pull-right
     = link_to icon_for(:edit), edit_group_link_path(@group, link), :remote => true
     = link_to icon_for(:remove), group_link_path(@group, link), :method => :delete, :remote => true
-  = link_to link.title, link.href, :target => '_' + link.target, :style => "color: #{link.color.hex_value};", :class => "title"
+  = link_to link.title, link.href, :target => '_' + link.target, :style => "color: #{link.color.hex_value}", :class => "title"
