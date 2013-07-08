@@ -1,5 +1,5 @@
 .group{ :id => "group#{group.id}", :style => "background-color: #{group.color.hex_value}" }
   .pull-right
     = link_to icon_for(:edit), edit_group_path(group), :remote => true
-    = link_to icon_for(:remove), group_path(group), :method => :delete, :remote => true, :confirm => "Delete group?"
-  %h2= group.title
+    = link_to icon_for(:remove), group_path(group), :method => :delete, :remote => true, :confirm => 'Delete group?'
+  %h2= link_to group.title, group_links_path(group), :class => 'links'
