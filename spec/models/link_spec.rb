@@ -9,17 +9,13 @@ describe Link do
 
   subject { link }
 
-  it { should respond_to(:tile) }
   it { should respond_to(:group) }
   it { should respond_to(:href) }
   it { should respond_to(:title) }
   it { should respond_to(:color) }
   it { should respond_to(:target) }
-
-  describe "without a tile" do
-    before { link.tile = nil }
-    it { should_not be_valid }
-  end
+  it { should respond_to(:border_color) }
+  it { should respond_to(:background_color) }
 
   describe "without an href" do
     before { link.href = nil }
@@ -49,5 +45,20 @@ describe Link do
   describe "with a duplicate title" do
     before { @duplicate_link = FactoryGirl.build(:link, :title => link.title) }
     specify { @duplicate_link.should_not be_valid }
+  end
+
+  describe "without a group" do
+    before { link.group = nil }
+    it { should_not be_valid }
+  end
+
+  describe "without a border color" do
+    before { link.border_color = nil }
+    it { should_not be_valid }
+  end
+
+  describe "without a background color" do
+    before { link.background_color = nil }
+    it { should_not be_valid }
   end
 end
