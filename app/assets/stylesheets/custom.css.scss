@@ -1,17 +1,45 @@
 @import "bootstrap";
 
+@mixin tile {
+  height: 10em;
+  margin-left: 1em;
+  padding: 0.5em;
+  float: left;
+  margin-bottom: 1em;
+  overflow: hidden;
+  word-wrap: break-word;
+}
+
 #groups {
   width: 100%;
   .group {
+    @include tile;
     width: 30%;
-    height: 10em;
-    margin-left: 1em;
-    padding: 0.5em;
-    float: left;
     border: 0.1em solid black;
-    margin-bottom: 1em;
-    overflow: hidden;
-    word-wrap: break-word;
+    a.links {
+      color: black;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+#links {
+  width: 100%;
+  .link {
+    width: 28%;
+    position: relative;
+    @include tile;
+    a.title {
+      position: absolute;
+      font-size: 3em;
+      top: 50%;
+      margin-top: -0.5em;
+      &:hover {
+        text-decoration: none;
+      }
+    }
   }
 }
 
@@ -27,7 +55,7 @@
   }
 }
 
-.group-create, .color-create {
+.group-create, .color-create, .link-create {
   margin-top: 1em;
 }
 

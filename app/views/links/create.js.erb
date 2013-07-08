@@ -1,0 +1,6 @@
+<% if @link.valid? %>
+  $("#modal").modal("hide");
+  $("#links").append("<%= escape_javascript(render @link) %>")
+<% else %>
+  $("#modal").html("<%= escape_javascript(render 'form') %>");
+<% end %>

@@ -1,0 +1,31 @@
+= render :partial => 'shared/form_header', :locals => { :object_name => "Link in #{@group.title}" }
+.modal-body
+  = render :partial => 'shared/form_errors', :locals => { :object => @link }
+  = form_for [@group, @link], :remote => true, :html => { :class => 'form-horizontal' } do |f|
+    .control-group
+      = f.label :title, :class => 'control-label'
+      .controls
+        = f.text_field :title
+    .control-group
+      = f.label :href, :class => 'control-label'
+      .controls
+        = f.text_field :href
+    .control-group
+      = f.label :target, :class => 'control-label'
+      .controls
+        = f.select :target, options_for_select(@targets)
+    .control-group
+      = f.label :color_id, :class => 'control-label'
+      .controls
+        = render :partial => 'shared/color_select', :locals => { :name => :color_id, :color => @link.color, :f => f }
+    .control-group
+      = f.label :background_color_id, :class => 'control-label'
+      .controls
+        = render :partial => 'shared/color_select', :locals => { :name => :background_color_id, :color => @link.background_color, :f => f }
+    .control-group
+      = f.label :border_color_id, :class => 'control-label'
+      .controls
+        = render :partial => 'shared/color_select', :locals => { :name => :border_color_id, :color => @link.border_color, :f => f }
+    .control-group
+      .controls
+        = f.submit "#{@verb} Link", :class => "btn btn-primary"
