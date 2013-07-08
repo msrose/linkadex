@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130708185418) do
+ActiveRecord::Schema.define(:version => 20130708190149) do
 
   create_table "colors", :force => true do |t|
     t.string   "hex_value"
@@ -44,6 +44,9 @@ ActiveRecord::Schema.define(:version => 20130708185418) do
     t.integer  "border_color_id"
   end
 
+  add_index "links", ["background_color_id"], :name => "index_links_on_background_color_id"
+  add_index "links", ["border_color_id"], :name => "index_links_on_border_color_id"
   add_index "links", ["color_id"], :name => "index_links_on_color_id"
+  add_index "links", ["group_id"], :name => "index_links_on_group_id"
 
 end
