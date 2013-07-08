@@ -32,6 +32,6 @@ Group.all.each do |group|
                       :color_id => Color.all.sample.id,
                       :background_color_id => Color.all.sample.id,
                       :border_color_id => Color.all.sample.id,
-                      :target => %w(self blank).sample)
+                      :target => Link::TARGETS.sample)
   end
 end

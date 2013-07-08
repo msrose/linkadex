@@ -41,6 +41,6 @@ class LinksController < ApplicationController
     end
 
     def load_targets
-      @targets = %w(blank self)
+      @targets = Link::TARGETS
     end
 end

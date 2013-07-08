@@ -1,4 +1,6 @@
 class Link < ActiveRecord::Base
+  TARGETS = %w(blank self)
+
   belongs_to :group
   belongs_to :color
   belongs_to :border_color, :class_name => 'Color', :foreign_key => :border_color_id
