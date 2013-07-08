@@ -1,6 +1,5 @@
 class Group < ActiveRecord::Base
-  has_many :tiles, :dependent => :destroy
-  has_many :links, :through => :tiles
+  has_many :links, :dependent => :destroy
   belongs_to :color
 
   validates :color_id, :presence => true

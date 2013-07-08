@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130701200226) do
+ActiveRecord::Schema.define(:version => 20130708190149) do
 
   create_table "colors", :force => true do |t|
     t.string   "hex_value"
@@ -33,28 +33,20 @@ ActiveRecord::Schema.define(:version => 20130701200226) do
   add_index "groups", ["color_id"], :name => "index_groups_on_color_id"
 
   create_table "links", :force => true do |t|
-    t.integer  "tile_id"
     t.string   "title"
     t.string   "href"
-    t.integer  "color_id",   :limit => 255
+    t.integer  "color_id",            :limit => 255
     t.string   "target"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
-  end
-
-  add_index "links", ["color_id"], :name => "index_links_on_color_id"
-  add_index "links", ["tile_id"], :name => "index_links_on_tile_id", :unique => true
-
-  create_table "tiles", :force => true do |t|
-    t.integer  "group_id"
-    t.integer  "border_color_id",     :limit => 255
-    t.integer  "background_color_id", :limit => 255
     t.datetime "created_at",                         :null => false
     t.datetime "updated_at",                         :null => false
+    t.integer  "group_id"
+    t.integer  "background_color_id"
+    t.integer  "border_color_id"
   end
 
-  add_index "tiles", ["background_color_id"], :name => "index_tiles_on_background_color_id"
-  add_index "tiles", ["border_color_id"], :name => "index_tiles_on_border_color_id"
-  add_index "tiles", ["group_id"], :name => "index_tiles_on_group_id"
+  add_index "links", ["background_color_id"], :name => "index_links_on_background_color_id"
+  add_index "links", ["border_color_id"], :name => "index_links_on_border_color_id"
+  add_index "links", ["color_id"], :name => "index_links_on_color_id"
+  add_index "links", ["group_id"], :name => "index_links_on_group_id"
 
 end
