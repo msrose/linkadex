@@ -10,7 +10,6 @@ describe Color do
   subject { color }
 
   it { should respond_to(:groups) }
-  it { should respond_to(:tiles) }
   it { should respond_to(:links) }
   it { should respond_to(:alias) }
 

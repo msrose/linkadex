@@ -1,6 +1,5 @@
 class Color < ActiveRecord::Base
   has_many :groups
-  has_many :tiles
   has_many :links
   before_save { |color| color.hex_value.upcase! }
 

@@ -9,7 +9,6 @@ describe Group do
 
   subject { group }
 
-  it { should respond_to(:tiles) }
   it { should respond_to(:links) }
   it { should respond_to(:title) }
   it { should respond_to(:color) }
