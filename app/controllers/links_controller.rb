@@ -14,6 +14,11 @@ class LinksController < ApplicationController
     @links = @group.links
   end
 
+  def destroy
+    @link = Link.find(params[:id])
+    @link.destroy
+  end
+
   private
 
     def load_group
