@@ -15,17 +15,17 @@
       .controls
         = f.select :target, options_for_select(@targets)
     .control-group
-      = f.label :color, :class => 'control-label'
+      = f.label :color_id, :class => 'control-label'
       .controls
-        = render :partial => 'shared/color_select', :locals => { :name => :color, :color => @link.color, :f => f }
+        = render :partial => 'shared/color_select', :locals => { :name => :color_id, :color => @link.color, :f => f }
     .control-group
-      = f.label :background_color, :class => 'control-label'
+      = f.label :background_color_id, :class => 'control-label'
       .controls
-        = render :partial => 'shared/color_select', :locals => { :name => :background_color, :color => @link.background_color, :f => f }
+        = render :partial => 'shared/color_select', :locals => { :name => :background_color_id, :color => @link.background_color, :f => f }
     .control-group
-      = f.label :border_color, :class => 'control-label'
+      = f.label :border_color_id, :class => 'control-label'
       .controls
-        = render :partial => 'shared/color_select', :locals => { :name => :border_color, :color => @link.border_color, :f => f }
+        = render :partial => 'shared/color_select', :locals => { :name => :border_color_id, :color => @link.border_color, :f => f }
     .control-group
       .controls
         = f.submit "#{@verb} Link", :class => "btn btn-primary"

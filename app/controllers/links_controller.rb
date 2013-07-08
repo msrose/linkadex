@@ -6,8 +6,19 @@ class LinksController < ApplicationController
     @link = @group.links.new
   end
 
+  def create
+    @link = @group.links.new(link_params)
+    @link.save
+  end
+
   def edit
     @link = Link.find(params[:id])
+  end
+
+  def update
+    @link = @group.links.find(params[:id])
+    @link.assign_attributes(link_params)
+    @link.save
   end
 
   def index
@@ -20,6 +31,10 @@ class LinksController < ApplicationController
   end
 
   private
+
+    def link_params
+      params.require(:link).permit(:title, :href, :target, :color_id, :background_color_id, :border_color_id)
+    end
 
     def load_group
       @group = Group.find(params[:group_id])
