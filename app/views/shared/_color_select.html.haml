@@ -1,0 +1,3 @@
+.input-append
+  = f.select name, options_for_select(@colors, color ? color.id : @first_color.id), {}, :class => 'color-select'
+  %span.add-on.color-select{ :style => "background-color: #{color ? color.hex_value : @first_color.hex_value}" }

@@ -1,4 +1,4 @@
-= render :partial => 'shared/form_header', :locals => { :object_name => "Group" }
+= render :partial => 'shared/form_header', :locals => { :object_name => 'Group' }
 .modal-body
   = render :partial => 'shared/form_errors', :locals => { :object => @group }
   = form_for @group, :remote => true, :html => { :class => 'form-horizontal' } do |f|
@@ -9,9 +9,7 @@
     .control-group
       = f.label :color, :class => 'control-label'
       .controls
-        .input-append
-          = f.select :color, options_for_select(@colors, @group.color ? @group.color.id : @colors.first[1]), {}, :class => 'color-select'
-          %span.add-on.color-select{ :style => "background-color: #{@group.color ? @group.color.hex_value : @first_color.hex_value}" }
+        = render :partial => 'shared/color_select', :locals => { :name => :color, :color => @group.color, :f => f }
     .control-group
       = f.label :collapsed, "Collapse?", :checked => @group.collapsed?, :class => 'control-label'
       .controls

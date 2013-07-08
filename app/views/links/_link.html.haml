@@ -1,0 +1,5 @@
+.link{ :id => "link#{link.id}", :style => "border: 0.5em solid #{link.border_color.hex_value}; background-color: #{link.background_color.hex_value}" }
+  .pull-right
+    = link_to icon_for(:edit), edit_group_link_path(@group, link), :remote => true
+    = link_to icon_for(:remove), group_link_path(@group, link), :method => :delete, :remote => true, :confirm => 'Delete link?'
+  = link_to link.title, link.href, :target => '_' + link.target, :style => "color: #{link.color.hex_value}", :class => 'title'

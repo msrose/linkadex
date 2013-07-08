@@ -1,0 +1,6 @@
+<% if @link.valid? %>
+  $("#modal").modal("hide");
+  $("#link<%= escape_javascript(@link.id.to_s) %>").replaceWith("<%= escape_javascript(render @link) %>")
+<% else %>
+  $("#modal").html("<%= escape_javascript(render 'form') %>");
+<% end %>
