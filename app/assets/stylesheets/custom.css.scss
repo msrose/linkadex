@@ -10,11 +10,21 @@
   word-wrap: break-word;
 }
 
+.navbar {
+  margin-right: -20px;
+  margin-left: -20px;
+  .nav > li {
+    float:none;
+    display:inline-block;
+    vertical-align: top;
+  }
+}
+
 #groups {
   width: 100%;
   .group {
     @include tile;
-    width: 30%;
+    width: 22%;
     border: 0.1em solid black;
     a.links {
       color: black;
@@ -28,9 +38,9 @@
 #links {
   width: 100%;
   .link {
-    width: 28%;
-    position: relative;
     @include tile;
+    width: 21%;
+    position: relative;
     a.title {
       position: absolute;
       font-size: 3em;
