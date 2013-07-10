@@ -1,3 +1,4 @@
-= link_to 'Toggle Mode', root_path(:mode => params[:mode] ? nil : 'edit')
+- unless edit_mode?
+  = link_to icon_for(:pencil), root_path(:mode => 'edit'), :class => 'pull-right', :title => 'Edit mode'
 #home
   .groups
