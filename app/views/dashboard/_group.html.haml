@@ -1,0 +1,9 @@
+.row-fluid
+  .group{ :id => "group#{group.id}", :style => "border: 0.2em solid #{group.color.hex_value}" }
+    - if edit_mode?
+      .pull-right
+        = link_to icon_for(:edit), edit_group_path(group), :remote => true
+        = link_to icon_for(:remove), group_path(group), :method => :delete, :remote => true, :confirm => 'Delete group?'
+    %h2
+      %span.collapse-toggle{ 'data-collapsed' => group.collapsed? }= icon_for(group.collapsed? ? 'plus-sign' : 'minus-sign')
+      = group.title
