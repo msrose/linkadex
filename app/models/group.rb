@@ -4,4 +4,6 @@ class Group < ActiveRecord::Base
 
   validates :color_id, :presence => true
   validates :title, :presence => true, :uniqueness => true
+
+  default_scope includes(:color)
 end

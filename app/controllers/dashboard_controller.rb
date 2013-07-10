@@ -1,5 +1,5 @@
 class DashboardController < ApplicationController
   def home
-    @groups = Group.all
+    @groups = Group.includes(:links).order(:collapsed, :title)
   end
 end

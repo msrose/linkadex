@@ -23,6 +23,7 @@
 #home {
   width: 100%;
   .group {
+    padding: 1em;
     margin-bottom: 0.5em;
     margin-top: 0.5em;
     span.collapse-toggle {
@@ -32,6 +33,18 @@
         position: relative;
         top: 0.25em;
         cursor: pointer;
+      }
+    }
+    a.link {
+      text-align: center;
+      margin: 0;
+      font-size: 100%;
+      padding: 0.8em;
+      display: inline-block;
+      width: 8em;
+      border-radius: 2em;
+      &:hover {
+        text-decoration: none;
       }
     }
   }

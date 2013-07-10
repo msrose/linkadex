@@ -42,4 +42,5 @@ $(document).on("click", "span.collapse-toggle i", function(event) {
     $(this).attr("class", "icon-plus-sign");
   }
   $(this).data("collapsed", !isCollapsed);
+  $(this).closest("h2").next(".links").slideToggle();
 });
