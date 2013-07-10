@@ -1,4 +1,6 @@
 Linkage::Application.routes.draw do
+  root :to => 'dashboard#home'
+
   resources :groups, :except => :show do
     resources :links, :except => :show
   end
