@@ -2,8 +2,13 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   before_filter :get_verb, :only => [:new, :create, :edit, :update]
+  helper_method :edit_mode?
 
   protected
+
+    def edit_mode?
+      params[:mode] == 'edit' || params[:controller] != 'dashboard'
+    end
 
     def get_verb
       @verb = params[:action] == 'new' || params[:action] == 'create' ? 'Create' : 'Update'

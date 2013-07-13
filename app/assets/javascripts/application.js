@@ -32,3 +32,15 @@ $(document).on("change", ".color-select", function(event) {
   var hex_value = $(this).find(":selected").data("hex");
   $(this).next("span.color-select").css({ backgroundColor: hex_value });
 });
+
+$(document).on("click", "span.collapse-toggle i", function(event) {
+  var isCollapsed = $(this).data("collapsed");
+  if (isCollapsed) {
+    $(this).attr("class", "icon-minus-sign");
+  }
+  else {
+    $(this).attr("class", "icon-plus-sign");
+  }
+  $(this).data("collapsed", !isCollapsed);
+  $(this).closest("h2").next(".links").slideToggle();
+});
