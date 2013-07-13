@@ -3,10 +3,10 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.13'
 gem 'bootstrap-sass'
 gem 'strong_parameters'
+gem 'haml-rails'
 
 group :development, :test do
   gem 'sqlite3'
-  gem 'haml-rails'
   gem 'rspec-rails'
   gem 'guard-rspec'
   gem 'guard-spork'
