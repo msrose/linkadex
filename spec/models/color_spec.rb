@@ -40,8 +40,6 @@ describe Color do
   end
 
   describe "in_use method" do
-    before {}
-
     it "is in use with a group" do
       FactoryGirl.create(:group, :color_id => color.id)
       color.should be_in_use
