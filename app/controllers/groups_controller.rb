@@ -7,7 +7,6 @@ class GroupsController < ApplicationController
 
   def create
     @group = Group.new(group_params)
-    @group.color = Color.find(params[:group][:color])
     @group.save
   end
 
@@ -18,7 +17,6 @@ class GroupsController < ApplicationController
   def update
     @group = Group.find(params[:id])
     @group.assign_attributes(group_params)
-    @group.color = Color.find(params[:group][:color])
     @group.save
   end
 
@@ -34,6 +32,6 @@ class GroupsController < ApplicationController
   private
 
     def group_params
-      params.require(:group).permit(:title, :collapsed)
+      params.require(:group).permit(:title, :collapsed, :color_id)
     end
 end
