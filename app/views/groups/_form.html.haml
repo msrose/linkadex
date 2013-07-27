@@ -7,9 +7,9 @@
       .controls
         = f.text_field :title
     .control-group
-      = f.label :color, :class => 'control-label'
+      = f.label :color_id, :class => 'control-label'
       .controls
-        = render :partial => 'shared/color_select', :locals => { :name => :color, :color => @group.color, :f => f }
+        = render :partial => 'shared/color_select', :locals => { :name => :color_id, :color => @group.color, :f => f }
     .control-group
       = f.label :collapsed, "Collapse?", :checked => @group.collapsed?, :class => 'control-label'
       .controls

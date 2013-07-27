@@ -15,7 +15,9 @@ class ApplicationController < ActionController::Base
     end
 
     def load_colors
-      @colors = Color.all.collect { |color| [color.alias.blank? ? color.hex_value : color.alias, color.id, { 'data-hex' => color.hex_value }] }
-      @first_color = Color.find(@colors.first[1])
+      if Color.any?
+        @colors = Color.all.collect { |color| [color.alias.blank? ? color.hex_value : color.alias, color.id, { 'data-hex' => color.hex_value }] }
+        @first_color = Color.find(@colors.first[1])
+      end
     end
 end
