@@ -5,4 +5,8 @@ class Color < ActiveRecord::Base
 
   VALID_COLOR_REGEX = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/
   validates :hex_value, :format => { :with => VALID_COLOR_REGEX }, :uniqueness => true
+
+  def in_use?
+    groups.any? || links.any?
+  end
 end
