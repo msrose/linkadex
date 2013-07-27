@@ -24,7 +24,7 @@ class ColorsController < ApplicationController
 
   def destroy
     @color = Color.find(params[:id])
-    @color.destroy
+    @color.destroy unless @color.in_use?
   end
 
   private
