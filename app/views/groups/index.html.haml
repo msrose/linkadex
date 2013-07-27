@@ -1,7 +1,4 @@
 = link_to icon_for('plus-sign') + ' Create', new_group_path, :remote => true, :class => 'pull-right btn group-create'
 %h1 Groups
 #groups
-  - if @groups.count == 0
-    %small No groups
-  - else
-    = render @groups
+  = render @groups
