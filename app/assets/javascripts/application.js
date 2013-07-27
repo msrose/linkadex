@@ -34,13 +34,14 @@ $(document).on("change", ".color-select", function(event) {
 });
 
 $(document).on("click", "span.collapse-toggle i", function(event) {
-  var isCollapsed = $(this).data("collapsed");
+  var parentSpan = $(this).parent();
+  var isCollapsed = parentSpan.data("collapsed");
   if (isCollapsed) {
     $(this).attr("class", "icon-minus-sign");
   }
   else {
     $(this).attr("class", "icon-plus-sign");
   }
-  $(this).data("collapsed", !isCollapsed);
+  parentSpan.data("collapsed", !isCollapsed);
   $(this).closest("h2").next(".links").slideToggle();
 });
