@@ -25,7 +25,11 @@ class GroupsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { render :json => @groups, :root => false }
+      if params[:callback]
+        format.json { render :json => @groups, :callback => params[:callback], :root => false }
+      else
+        format.json { render :json => @groups, :root => false }
+      end
     end
   end
 
