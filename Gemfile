@@ -4,6 +4,7 @@ gem 'rails', '3.2.13'
 gem 'bootstrap-sass'
 gem 'strong_parameters'
 gem 'haml-rails'
+gem 'active_model_serializers'
 
 group :development, :test do
   gem 'sqlite3'
