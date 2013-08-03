@@ -25,7 +25,7 @@ class GroupsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { render :json => @groups }
+      format.json { render :json => @groups, :root => false }
     end
   end
 
