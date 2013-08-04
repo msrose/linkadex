@@ -12,7 +12,7 @@ class LinksController < ApplicationController
   end
 
   def edit
-    @link = Link.find(params[:id])
+    @link = @group.links.find(params[:id])
   end
 
   def update
@@ -26,7 +26,7 @@ class LinksController < ApplicationController
   end
 
   def destroy
-    @link = Link.find(params[:id])
+    @link = @group.links.find(params[:id])
     @link.destroy
   end
 
