@@ -8,7 +8,7 @@ class Link < ActiveRecord::Base
 
   validates :target, :group_id, :color_id, :border_color_id, :background_color_id, :presence => true
   validates :title, :presence => true, :uniqueness => true
-  validates :href, :format => { :with => URI.regexp }
+  validates :href, :format => { :with => URI.regexp }, :uniqueness => true
 
   default_scope includes(:color, :border_color, :background_color)
 end
