@@ -12,5 +12,15 @@ describe DashboardController do
       get :home
       assigns(:groups).should == [group]
     end
+
+    it "does not enter edit mode without the parameter" do
+      get :home
+      controller.should_not be_edit_mode
+    end
+
+    it "enters edit mode with the parameter" do
+      get :home, :mode => "edit"
+      controller.should be_edit_mode
+    end
   end
 end

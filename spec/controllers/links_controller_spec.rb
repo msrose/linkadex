@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe LinksController do
+  it "triggers edit mode" do
+    controller.should be_edit_mode
+  end
+
   let(:group) { FactoryGirl.create(:group) }
   let(:group_link) { FactoryGirl.create(:link, :group_id => group.id) }
 

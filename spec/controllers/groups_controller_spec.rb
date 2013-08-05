@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe GroupsController do
+  it "triggers edit mode" do
+    controller.should be_edit_mode
+  end
+
   describe "GET #index" do
     it "renders the index template" do
       get :index
