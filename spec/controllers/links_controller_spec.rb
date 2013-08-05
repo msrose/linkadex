@@ -17,7 +17,7 @@ describe LinksController do
     it "assigns the correct links to @links" do
       group_link
       get :index, :group_id => group.id
-      assigns(:links).should == [group_link]
+      assigns(:links).should include(group_link)
     end
   end
 

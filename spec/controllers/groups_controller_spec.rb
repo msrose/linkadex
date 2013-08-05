@@ -14,7 +14,7 @@ describe GroupsController do
     it "populates an array of all the groups" do
       group = FactoryGirl.create(:group)
       get :index
-      assigns(:groups).should == [group]
+      assigns(:groups).should include(group)
     end
 
     it "provides a JSON response" do
