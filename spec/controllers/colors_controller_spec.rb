@@ -16,6 +16,11 @@ describe ColorsController do
       get :index
       assigns(:colors).should include(color)
     end
+
+    it "sets the title of the page" do
+      get :index
+      assigns(:title).should == 'Colors - Linkage'
+    end
   end
 
   describe "GET #new" do

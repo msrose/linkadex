@@ -28,6 +28,11 @@ describe LinksController do
       assigns(:links).should include(group_link2)
       assigns(:links).index(group_link2).should < assigns(:links).index(group_link)
     end
+
+    it "sets the title of the page" do
+      get :index, :group_id => group.id
+      assigns(:title).should == "Links in #{group.title} - Linkage"
+    end
   end
 
   describe "GET #new" do
