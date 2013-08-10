@@ -19,6 +19,15 @@ describe LinksController do
       get :index, :group_id => group.id
       assigns(:links).should include(group_link)
     end
+
+    it "orders the links by order rank" do
+      group_link
+      group_link2 = FactoryGirl.create(:link, :order_rank => -125233, :group_id => group.id)
+      get :index, :group_id => group.id
+      assigns(:links).should include(group_link)
+      assigns(:links).should include(group_link2)
+      assigns(:links).index(group_link2).should < assigns(:links).index(group_link)
+    end
   end
 
   describe "GET #new" do

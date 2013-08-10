@@ -17,6 +17,15 @@ describe GroupsController do
       assigns(:groups).should include(group)
     end
 
+    it "orders the groups by order rank" do
+      group = FactoryGirl.create(:group, :order_rank => 1254)
+      group2 = FactoryGirl.create(:group, :order_rank => 1)
+      get :index
+      assigns(:groups).should include(group)
+      assigns(:groups).should include(group2)
+      assigns(:groups).index(group).should > assigns(:groups).index(group2)
+    end
+
     it "provides a JSON response" do
       get :index, :format => "json"
       response.status.should == 200

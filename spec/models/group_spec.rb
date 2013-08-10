@@ -13,6 +13,7 @@ describe Group do
   it { should respond_to(:title) }
   it { should respond_to(:color) }
   it { should respond_to(:collapsed) }
+  it { should respond_to(:order_rank) }
 
   describe "without a title" do
     before { group.title = " " }
