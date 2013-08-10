@@ -6,11 +6,7 @@ class DashboardController < ApplicationController
   end
 
   def feed
-    if params[:callback]
-      render :json => @groups, :callback => params[:callback], :root => false
-    else
-      render :json => @groups, :root => false
-    end
+    render :json => @groups, :callback => params[:callback], :root => false
   end
 
   private
