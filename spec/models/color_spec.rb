@@ -46,8 +46,6 @@ describe Color do
     end
 
     it "is not in use without any groups or links" do
-      color.groups.stub(:any?).and_return(false)
-      color.links.stub(:any?).and_return(false)
       color.should_not be_in_use
     end
   end
