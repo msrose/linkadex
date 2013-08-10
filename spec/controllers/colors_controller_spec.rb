@@ -109,15 +109,23 @@ describe ColorsController do
   describe "DELETE #clean_up" do
     before do
       @color = FactoryGirl.create(:color)
-      xhr :get, :clean_up
     end
 
     it "populates an array of deleted ids" do
+      xhr :get, :clean_up
       assigns(:destroyed_ids).should include(@color.id)
     end
 
     it "destroys the colors that are not in use" do
+      xhr :get, :clean_up
       Color.all.should_not include(@color)
+    end
+
+    it "does not delete colors that are in use" do
+      FactoryGirl.create(:group, :color => @color)
+      xhr :get, :clean_up
+      Color.all.should include(@color)
+      assigns(:destroyed_ids).should_not include(@color.id)
     end
   end
 end
