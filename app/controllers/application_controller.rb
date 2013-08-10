@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   before_filter :get_verb, :only => [:new, :create, :edit, :update]
-  helper_method :edit_mode?
+  helper_method :edit_mode?, :title
 
   protected
 
@@ -19,5 +19,9 @@ class ApplicationController < ActionController::Base
         @colors = Color.all.collect { |color| [color.alias.blank? ? color.hex_value : color.alias, color.id, { 'data-hex' => color.hex_value }] }
         @first_color = Color.find(@colors.first[1])
       end
+    end
+
+    def title
+      @title ||= 'Linkage'
     end
 end
