@@ -37,4 +37,16 @@ describe DashboardController do
       assigns(:title).should == 'Dashboard - Linkage'
     end
   end
+
+  describe "GET #feed" do
+    it "provides a JSON response" do
+      get :feed, :format => "json"
+      response.status.should == 200
+    end
+
+    it "gives a JSON response with callback" do
+      get :feed, :format => "json", :callback => "JSON_CALLBACK"
+      response.body.should include("JSON_CALLBACK")
+    end
+  end
 end
