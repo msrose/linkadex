@@ -35,6 +35,11 @@ describe GroupsController do
       get :index, :format => "json", :callback => "JSON_CALLBACK"
       response.body.should include("JSON_CALLBACK")
     end
+
+    it "sets the title of the page" do
+      get :index
+      assigns(:title).should == 'Groups - Linkage'
+    end
   end
 
   describe "GET #new" do
