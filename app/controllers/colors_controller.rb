@@ -28,6 +28,14 @@ class ColorsController < ApplicationController
     @color.destroy unless @color.in_use?
   end
 
+  def clean_up
+    @destroyed_ids = []
+    Color.select { |color| !color.in_use? }.each do |color|
+      @destroyed_ids.push(color.id)
+      color.destroy
+    end
+  end
+
   private
 
     def color_params

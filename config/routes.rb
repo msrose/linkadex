@@ -4,7 +4,12 @@ Linkage::Application.routes.draw do
   resources :groups, :except => :show do
     resources :links, :except => :show
   end
-  resources :colors, :except => :show
+
+  resources :colors, :except => :show do
+    collection do
+      delete 'clean-up' => 'colors#clean_up', :as => 'clean_up'
+    end
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
