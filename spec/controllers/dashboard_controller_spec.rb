@@ -31,5 +31,10 @@ describe DashboardController do
       assigns(:groups).should include(group2)
       assigns(:groups).index(group).should > assigns(:groups).index(group2)
     end
+
+    it "sets the title of the page" do
+      get :home
+      assigns(:title).should == 'Dashboard - Linkage'
+    end
   end
 end
