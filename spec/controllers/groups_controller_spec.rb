@@ -26,16 +26,6 @@ describe GroupsController do
       assigns(:groups).index(group).should > assigns(:groups).index(group2)
     end
 
-    it "provides a JSON response" do
-      get :index, :format => "json"
-      response.status.should == 200
-    end
-
-    it "gives a JSON response with callback" do
-      get :index, :format => "json", :callback => "JSON_CALLBACK"
-      response.body.should include("JSON_CALLBACK")
-    end
-
     it "sets the title of the page" do
       get :index
       assigns(:title).should == 'Groups - Linkage'
