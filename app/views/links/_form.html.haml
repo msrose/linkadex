@@ -15,6 +15,10 @@
       .controls
         = f.select :target, options_for_select(@targets)
     .control-group
+      = f.label :order_rank, :class => 'control-label'
+      .controls
+        = f.text_field :order_rank
+    .control-group
       = f.label :color_id, :class => 'control-label'
       .controls
         = render :partial => 'shared/color_select', :locals => { :name => :color_id, :color => @link.color, :f => f }

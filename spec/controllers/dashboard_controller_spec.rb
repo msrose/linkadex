@@ -22,5 +22,14 @@ describe DashboardController do
       get :home, :mode => "edit"
       controller.should be_edit_mode
     end
+
+    it "orders the groups by order rank" do
+      group = FactoryGirl.create(:group, :order_rank => 1254)
+      group2 = FactoryGirl.create(:group, :order_rank => 1)
+      get :home
+      assigns(:groups).should include(group)
+      assigns(:groups).should include(group2)
+      assigns(:groups).index(group).should > assigns(:groups).index(group2)
+    end
   end
 end

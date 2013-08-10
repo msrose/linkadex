@@ -34,7 +34,7 @@ class LinksController < ApplicationController
   private
 
     def link_params
-      params.require(:link).permit(:title, :href, :target, :color_id, :background_color_id, :border_color_id)
+      params.require(:link).permit(:title, :href, :target, :color_id, :background_color_id, :border_color_id, :order_rank)
     end
 
     def load_group

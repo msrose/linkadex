@@ -22,7 +22,8 @@ end
 9.times do
   Group.create(:title => Faker::Lorem.words(1).first.capitalize,
                :color_id => Color.all.sample.id,
-               :collapsed => [true, false].sample)
+               :collapsed => [true, false].sample,
+               :order_rank => rand(1..3))
 end
 
 Group.all.each do |group|
@@ -32,6 +33,7 @@ Group.all.each do |group|
                       :color_id => Color.all.sample.id,
                       :background_color_id => Color.all.sample.id,
                       :border_color_id => Color.all.sample.id,
-                      :target => Link::TARGETS.sample)
+                      :target => Link::TARGETS.sample,
+                      :order_rank => rand(1..3))
   end
 end
