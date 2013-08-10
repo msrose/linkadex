@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130708190149) do
+ActiveRecord::Schema.define(:version => 20130810032153) do
 
   create_table "colors", :force => true do |t|
     t.string   "hex_value"
@@ -24,10 +24,11 @@ ActiveRecord::Schema.define(:version => 20130708190149) do
 
   create_table "groups", :force => true do |t|
     t.string   "title"
+    t.integer  "color_id",   :limit => 255
     t.boolean  "collapsed"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.integer  "color_id"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+    t.integer  "order_rank"
   end
 
   add_index "groups", ["color_id"], :name => "index_groups_on_color_id"
@@ -35,13 +36,14 @@ ActiveRecord::Schema.define(:version => 20130708190149) do
   create_table "links", :force => true do |t|
     t.string   "title"
     t.string   "href"
+    t.integer  "color_id",            :limit => 255
     t.string   "target"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
-    t.integer  "color_id"
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
     t.integer  "group_id"
     t.integer  "background_color_id"
     t.integer  "border_color_id"
+    t.integer  "order_rank"
   end
 
   add_index "links", ["background_color_id"], :name => "index_links_on_background_color_id"
