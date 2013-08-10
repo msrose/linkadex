@@ -48,7 +48,7 @@ describe LinksController do
   end
 
   describe "GET #edit" do
-      before { xhr :get, :edit, :group_id => group.id, :id => group_link }
+    before { xhr :get, :edit, :group_id => group.id, :id => group_link }
 
     it "returns a success response" do
       response.status.should == 200

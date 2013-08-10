@@ -11,7 +11,7 @@ describe ColorsController do
       response.should render_template :index
     end
 
-    it "populates and array of colors" do
+    it "populates an array of colors" do
       color = FactoryGirl.create(:color)
       get :index
       assigns(:colors).should include(color)
@@ -85,7 +85,7 @@ describe ColorsController do
     before { @color = FactoryGirl.create(:color) }
 
     context "when the color is not in use" do
-      it "delete the color" do
+      it "deletes the color" do
         @color.should_not be_in_use
         expect { xhr :delete, :destroy, :id => @color.id }.to change(Color, :count).by(-1)
       end
