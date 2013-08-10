@@ -6,12 +6,10 @@ class DashboardController < ApplicationController
   end
 
   def feed
-    respond_to do |format|
-      if params[:callback]
-        format.json { render :json => @groups, :callback => params[:callback], :root => false }
-      else
-        format.json { render :json => @groups, :root => false }
-      end
+    if params[:callback]
+      render :json => @groups, :callback => params[:callback], :root => false
+    else
+      render :json => @groups, :root => false
     end
   end
 

@@ -1,6 +1,7 @@
 Linkage::Application.routes.draw do
   root :to => 'dashboard#home'
-  get 'feed' => 'dashboard#feed'
+
+  get '/feed.:format' => 'dashboard#feed', :format => /json/
 
   resources :groups, :except => :show do
     resources :links, :except => :show
