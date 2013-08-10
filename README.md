@@ -52,9 +52,9 @@ Linkage requires every [link](#links) and [group](#groups) to be associated with
 
 Linkage is still in quite a nascent state. Listed below are some important features that would greatly increase functionality of the application ([issues](https://github.com/msrose/linkage/issues?state=open) are already open for most of them):
 
-- [ ] Allow users to create accounts so that everyone can personalize their own Linkage
-- [ ] Detailed documentation about how to use the application
-- [ ] Allow users to decide which order the links take inside a group and groups take on the dashboard
+- Allow users to create accounts so that everyone can personalize their own Linkage
+- Detailed documentation about how to use the application
+- Allow users to decide which order the links take inside a group and groups take on the dashboard
 
 ## Contributing
 
