@@ -16,6 +16,7 @@ describe Link do
   it { should respond_to(:target) }
   it { should respond_to(:border_color) }
   it { should respond_to(:background_color) }
+  it { should respond_to(:order_rank) }
 
   describe "without an href" do
     before { link.href = nil }

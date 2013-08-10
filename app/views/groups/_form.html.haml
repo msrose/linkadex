@@ -11,6 +11,10 @@
       .controls
         = render :partial => 'shared/color_select', :locals => { :name => :color_id, :color => @group.color, :f => f }
     .control-group
+      = f.label :order_rank, :class => 'control-label'
+      .controls
+        = f.text_field :order_rank
+    .control-group
       = f.label :collapsed, "Collapse?", :checked => @group.collapsed?, :class => 'control-label'
       .controls
         = f.check_box :collapsed

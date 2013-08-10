@@ -9,5 +9,6 @@ FactoryGirl.define do
     f.href { Faker::Internet.url }
     f.title { Faker::Lorem.words(1).first.capitalize }
     f.target { %w(blank self).sample }
+    f.order_rank { rand(1..3) }
   end
 end

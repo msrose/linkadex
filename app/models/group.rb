@@ -5,5 +5,5 @@ class Group < ActiveRecord::Base
   validates :color_id, :presence => true
   validates :title, :presence => true, :uniqueness => true
 
-  default_scope includes(:color)
+  default_scope includes(:color).order(:order_rank)
 end
