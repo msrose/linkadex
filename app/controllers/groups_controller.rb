@@ -21,6 +21,7 @@ class GroupsController < ApplicationController
   end
 
   def index
+    @title = 'Groups - Linkage'
     @groups = Group.all
 
     respond_to do |format|
