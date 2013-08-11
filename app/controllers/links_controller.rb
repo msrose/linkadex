@@ -39,7 +39,7 @@ class LinksController < ApplicationController
     end
 
     def load_group
-      @group = Group.find(params[:group_id])
+      @group = current_user.groups.find(params[:group_id])
     end
 
     def load_targets
