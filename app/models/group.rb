@@ -3,7 +3,7 @@ class Group < ActiveRecord::Base
   belongs_to :color
   belongs_to :user
 
-  # validates :user_id, :presence => true
+  validates :user_id, :presence => true
 
   validates :color_id, :presence => true
 
