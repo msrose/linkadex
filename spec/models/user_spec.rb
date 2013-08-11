@@ -36,9 +36,24 @@ describe User do
     it { should be_valid }
   end
 
+  describe "with a duplicate email" do
+    before { @duplicate_user = FactoryGirl.build(:user, :email => user.email) }
+    specify { @duplicate_user.should_not be_valid }
+  end
+
+  describe "with a duplicate email with different case" do
+    before { @duplicate_user = FactoryGirl.build(:user, :email => user.email.upcase) }
+    specify { @duplicate_user.should_not be_valid }
+  end
+
   describe "without a password digest" do
     before { user.password_digest = "" }
     it { should_not be_valid }
+  end
+
+  it "downcases the email before saving" do
+    user.update_attribute(:email, "USER@EXAMPLE.COM")
+    user.email.should == "user@example.com"
   end
 
   describe "with mismatching password confirmation" do
