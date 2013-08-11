@@ -7,8 +7,8 @@ class Link < ActiveRecord::Base
   belongs_to :background_color, :class_name => 'Color', :foreign_key => :background_color_id
 
   validates :target, :group_id, :color_id, :border_color_id, :background_color_id, :presence => true
-  validates :title, :presence => true, :uniqueness => true
-  validates :href, :format => { :with => URI.regexp }, :uniqueness => true
+  validates :title, :presence => true, :uniqueness => { :scope => :group_id }
+  validates :href, :format => { :with => URI.regexp }, :uniqueness => { :scope => :group_id }
 
   default_scope includes(:color, :border_color, :background_color).order(:order_rank)
 end
