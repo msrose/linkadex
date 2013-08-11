@@ -1,5 +1,7 @@
 - unless edit_mode?
   .row-fluid= link_to icon_for(:pencil), root_path(:mode => 'edit'), :class => 'pull-right', :title => 'Edit mode'
+- if flash[:notice]
+  .alert.alert-notice= flash[:notice]
 #home
   .groups
     = render :partial => 'group', :collection => @groups, :as => 'group'

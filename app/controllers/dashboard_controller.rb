@@ -1,6 +1,6 @@
 class DashboardController < ApplicationController
-  before_filter :load_groups
   before_filter :require_signed_in_user
+  before_filter :load_groups
 
   def home
     @title = 'Dashboard - Linkage'
