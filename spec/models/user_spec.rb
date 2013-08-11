@@ -26,6 +26,16 @@ describe User do
     it { should_not be_valid }
   end
 
+  describe "with an invalid email format" do
+    before { user.email = "squirrel@hey" }
+    it { should_not be_valid }
+  end
+
+  describe "with an valid email format" do
+    before { user.email = "squirrel@example.com" }
+    it { should be_valid }
+  end
+
   describe "without a password digest" do
     before { user.password_digest = "" }
     it { should_not be_valid }
