@@ -1,4 +1,6 @@
 %h1 Sign In
+- if flash[:error]
+  .alert.alert-error= flash[:error]
 = form_for :session, :url => sessions_path, :html => { :class => 'form-horizontal' } do |f|
   .control-group
     = f.label :email, :class => 'control-label'
@@ -11,3 +13,6 @@
   .control-group
     .controls
       = f.submit 'Sign in', :class => 'btn btn-primary'
+.signup-here
+  Don't have an account?
+  = link_to 'Sign up today', signup_path
