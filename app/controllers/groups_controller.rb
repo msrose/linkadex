@@ -7,27 +7,27 @@ class GroupsController < ApplicationController
   end
 
   def create
-    @group = Group.new(group_params)
+    @group = current_user.groups.new(group_params)
     @group.save
   end
 
   def edit
-    @group = Group.find(params[:id])
+    @group = current_user.groups.find(params[:id])
   end
 
   def update
-    @group = Group.find(params[:id])
+    @group = current_user.groups.find(params[:id])
     @group.assign_attributes(group_params)
     @group.save
   end
 
   def index
     @title = 'Groups - Linkage'
-    @groups = Group.all
+    @groups = current_user.groups
   end
 
   def destroy
-    @group = Group.find(params[:id])
+    @group = current_user.groups.find(params[:id])
     @group.destroy
   end
 

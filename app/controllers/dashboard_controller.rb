@@ -13,6 +13,6 @@ class DashboardController < ApplicationController
   private
 
     def load_groups
-      @groups = Group.includes(:links).order(:collapsed, :title)
+      @groups = current_user.groups.includes(:links).order(:collapsed, :title)
     end
 end
