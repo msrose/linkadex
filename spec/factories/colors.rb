@@ -7,5 +7,6 @@ end
 FactoryGirl.define do
   factory :color do |f|
     f.hex_value { random_hex }
+    f.user_id { FactoryGirl.create(:user).id }
   end
 end
