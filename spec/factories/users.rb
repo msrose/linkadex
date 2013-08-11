@@ -4,6 +4,7 @@ FactoryGirl.define do
   factory :user do |f|
     f.name { Faker::Name.name }
     f.email { Faker::Internet.email }
-    f.password_digest { "random digest" }
+    f.password { "random" }
+    f.password_confirmation { "random" }
   end
 end
