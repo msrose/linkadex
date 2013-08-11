@@ -1,0 +1,21 @@
+= render :partial => 'shared/form_errors', :locals => { :object => @user }
+= form_for @user, :html => { :class => 'form-horizontal' } do |f|
+  .control-group
+    = f.label :name, :class => 'control-label'
+    .controls
+      = f.text_field :name
+  .control-group
+    = f.label :email, :class => 'control-label'
+    .controls
+      = f.text_field :email
+  .control-group
+    = f.label :password, :class => 'control-label'
+    .controls
+      = f.text_field :password
+  .control-group
+    = f.label :password_confirmation, 'Confirm Password', :class => 'control-label'
+    .controls
+      = f.text_field :password_confirmation
+  .control-group
+    .controls
+      = f.submit "#{@action}", :class => 'btn btn-primary'
