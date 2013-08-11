@@ -30,7 +30,13 @@ describe Color do
 
     context "with the same user" do
       before { @duplicate_color = FactoryGirl.build(:color, :hex_value => color.hex_value, :user_id => color.user_id) }
+
       specify { @duplicate_color.should_not be_valid }
+
+      it "is case insensitive" do
+        new_color = FactoryGirl.create(:color, :hex_value => '#FFFFFF')
+        FactoryGirl.build(:color, :hex_value => '#ffffff', :user_id => new_color.user_id).should_not be_valid
+      end
     end
   end
 
