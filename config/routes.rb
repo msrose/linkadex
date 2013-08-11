@@ -3,6 +3,9 @@ Linkage::Application.routes.draw do
 
   get '/feed.:format' => 'dashboard#feed', :format => /json/
 
+  resources :users
+  get '/signup' => 'users#new'
+
   resources :groups, :except => :show do
     resources :links, :except => :show
   end
