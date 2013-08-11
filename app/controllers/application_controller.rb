@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
     end
 
     def get_verb
-      @verb = params[:action] == 'new' || params[:action] == 'create' ? 'Create' : 'Update'
+      @verb = params[:action] =~ /new|create/ ? 'Create' : 'Update'
     end
 
     def load_colors
