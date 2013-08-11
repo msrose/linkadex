@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       sign_in(@user)
-      flash[:notice] = 'Welcome to Linkage! Click on the pencil in the top right corner to get started.'
+      flash[:welcome] = 'Welcome to Linkage! Click on the pencil in the top right corner to get started.'
       redirect_to root_url
     else
       render :new
