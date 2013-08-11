@@ -12,6 +12,7 @@ describe Color do
   it { should respond_to(:groups) }
   it { should respond_to(:links) }
   it { should respond_to(:alias) }
+  it { should respond_to(:user) }
 
   describe "with a valid hex value" do
     valid_hex = ["#fff", "#abcdef", "#777", "#193599"]
