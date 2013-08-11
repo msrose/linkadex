@@ -30,4 +30,12 @@ describe User do
     before { user.password_digest = "" }
     it { should_not be_valid }
   end
+
+  describe "with mismatching password confirmation" do
+    before do
+      user.password = "lemon"
+      user.password_confirmation = "curry"
+    end
+    it { should_not be_valid }
+  end
 end
