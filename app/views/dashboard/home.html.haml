@@ -3,7 +3,7 @@
 - if flash[:welcome]
   .alert.alert-info= flash[:welcome]
 - elsif current_user.colors.empty?
-  .alert.alert-warning
+  .alert.alert-notice
     Start using Linkage by
     = link_to('adding colors to your palette', colors_path)
 #home
