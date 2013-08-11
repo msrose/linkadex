@@ -23,13 +23,32 @@ describe Color do
   end
 
   describe "with a duplicate hex value" do
-    before { @duplicate_color = FactoryGirl.build(:color, :hex_value => color.hex_value) }
-    specify { @duplicate_color.should_not be_valid }
+    context "with a different user" do
+      before { @duplicate_color = FactoryGirl.build(:color, :hex_value => color.hex_value) }
+      specify { @duplicate_color.should be_valid }
+    end
+
+    context "with the same user" do
+      before { @duplicate_color = FactoryGirl.build(:color, :hex_value => color.hex_value, :user_id => color.user_id) }
+      specify { @duplicate_color.should_not be_valid }
+    end
   end
 
   describe "with a hex value not provided" do
     before { color.hex_value = " " }
     it { should_not be_valid }
+  end
+
+  describe "with a duplicate alias" do
+    context "with the same user" do
+      before { @duplicate_color = FactoryGirl.build(:color, :alias => color.alias, :user_id => color.user_id) }
+      specify { @duplicate_color.should_not be_valid }
+    end
+
+    context "with different users" do
+      before { @duplicate_color = FactoryGirl.build(:color, :alias => color.alias) }
+      specify { @duplicate_color.should be_valid }
+    end
   end
 
   describe "with an invalid hex format" do
@@ -49,5 +68,10 @@ describe Color do
     it "is not in use without any groups or links" do
       color.should_not be_in_use
     end
+  end
+
+  describe "without a user id" do
+    before { color.user_id = nil }
+    it
   end
 end

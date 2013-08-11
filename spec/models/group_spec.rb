@@ -27,7 +27,19 @@ describe Group do
   end
 
   describe "with a duplicate title" do
-    before { @duplicate_group = FactoryGirl.build(:group, :title => group.title) }
-    specify { @duplicate_group.should_not be_valid }
+    context "with different users" do
+      before { @duplicate_group = FactoryGirl.build(:group, :title => group.title) }
+      specify { @duplicate_group.should be_valid }
+    end
+
+    context "with the same user" do
+      before { @duplicate_group = FactoryGirl.build(:group, :title => group.title, :user_id => group.user_id) }
+      specify { @duplicate_group.should_not be_valid }
+    end
+  end
+
+  describe "without a user" do
+    before { group.user_id = nil }
+    it
   end
 end

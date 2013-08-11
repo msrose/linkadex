@@ -11,13 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130810235632) do
+ActiveRecord::Schema.define(:version => 20130811001931) do
 
   create_table "colors", :force => true do |t|
     t.string   "hex_value"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.string   "alias"
+    t.integer  "user_id"
   end
 
   add_index "colors", ["hex_value"], :name => "index_colors_on_hex_value"
@@ -29,6 +30,7 @@ ActiveRecord::Schema.define(:version => 20130810235632) do
     t.datetime "updated_at", :null => false
     t.integer  "color_id"
     t.integer  "order_rank"
+    t.integer  "user_id"
   end
 
   add_index "groups", ["color_id"], :name => "index_groups_on_color_id"
