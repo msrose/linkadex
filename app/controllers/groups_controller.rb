@@ -1,5 +1,6 @@
 class GroupsController < ApplicationController
   before_filter :load_colors, :only => [:new, :edit, :create, :update]
+  before_filter :require_signed_in_user
 
   def new
     @group = Group.new

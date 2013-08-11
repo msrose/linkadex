@@ -1,4 +1,6 @@
 class ColorsController < ApplicationController
+  before_filter :require_signed_in_user
+
   def new
     @color = Color.new
   end

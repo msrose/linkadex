@@ -50,6 +50,6 @@ class ApplicationController < ActionController::Base
     end
 
     def require_signed_in_user
-      redirect_to signup_url unless signed_in?
+      redirect_to signin_url unless signed_in?
     end
 end
