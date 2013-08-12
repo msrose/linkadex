@@ -47,8 +47,19 @@ describe Color do
 
   describe "with a duplicate alias" do
     context "with the same user" do
-      before { @duplicate_color = FactoryGirl.build(:color, :alias => color.alias, :user_id => color.user_id) }
+      before do
+        color.update_attribute(:alias, "something")
+        color.reload
+        @duplicate_color = FactoryGirl.build(:color, :alias => color.alias, :user_id => color.user_id)
+      end
       specify { @duplicate_color.should_not be_valid }
+
+      it "allows blank aliases" do
+        color.update_attribute(:alias, " ")
+        color.reload
+        @duplicate_color.alias = " "
+        @duplicate_color.should be_valid
+      end
     end
 
     context "with different users" do
@@ -73,6 +84,18 @@ describe Color do
 
     it "is not in use without any groups or links" do
       color.should_not be_in_use
+    end
+
+    it "is in use as a link background color" do
+      dummy_color = FactoryGirl.create(:color)
+      FactoryGirl.create(:link, :color_id => dummy_color.id, :background_color_id => color.id, :border_color_id => dummy_color.id)
+      color.should be_in_use
+    end
+
+    it "is in use as a link border color" do
+      dummy_color = FactoryGirl.create(:color)
+      FactoryGirl.create(:link, :color_id => dummy_color.id, :background_color_id => dummy_color.id, :border_color_id => color.id)
+      color.should be_in_use
     end
   end
 
