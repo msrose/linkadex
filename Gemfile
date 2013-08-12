@@ -5,6 +5,7 @@ gem 'bootstrap-sass'
 gem 'strong_parameters'
 gem 'haml-rails'
 gem 'active_model_serializers'
+gem 'bcrypt-ruby'
 
 group :development, :test do
   gem 'sqlite3'

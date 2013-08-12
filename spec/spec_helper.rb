@@ -4,6 +4,13 @@ SimpleCov.start 'rails'
 require 'rubygems'
 require 'spork'
 
+def override_authorization
+  @current_user = FactoryGirl.create(:user)
+  controller.stub(:signed_in?).and_return(true)
+  controller.stub(:current_user).and_return(@current_user)
+  User.any_instance.stub(:verified).and_return(:true)
+end
+
 Spork.prefork do
   # Loading more in this block will cause your tests to run faster. However,
   # if you change any configuration or code from libraries loaded here, you'll

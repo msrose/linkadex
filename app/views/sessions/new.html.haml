@@ -1,0 +1,20 @@
+%h1 Sign In
+- if flash[:error]
+  .alert.alert-error= flash[:error]
+- elsif flash[:welcome]
+  .alert.alert-info= flash[:welcome]
+= form_for :session, :url => sessions_path, :html => { :class => 'form-horizontal' } do |f|
+  .control-group
+    = f.label :email, :class => 'control-label'
+    .controls
+      = f.text_field :email
+  .control-group
+    = f.label :password, :class => 'control-label'
+    .controls
+      = f.password_field :password
+  .control-group
+    .controls
+      = f.submit 'Sign in', :class => 'btn btn-primary'
+.signup-here
+  Don't have an account?
+  = link_to 'Sign up today', signup_path

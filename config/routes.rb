@@ -1,10 +1,28 @@
 Linkage::Application.routes.draw do
   root :to => 'dashboard#home'
 
+  get '/feed.:format' => 'dashboard#feed', :format => /json/
+
+  resources :users do
+    collection do
+      get 'verify' => 'users#verify', :as => 'verify'
+    end
+  end
+  get '/signup' => 'users#new'
+
+  resources :sessions, :only => [:new, :create, :destroy]
+  get '/signin' => 'sessions#new'
+  get '/signout' => 'sessions#destroy'
+
   resources :groups, :except => :show do
     resources :links, :except => :show
   end
-  resources :colors, :except => :show
+
+  resources :colors, :except => :show do
+    collection do
+      delete 'clean-up' => 'colors#clean_up', :as => 'clean_up'
+    end
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

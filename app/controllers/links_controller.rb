@@ -1,4 +1,5 @@
 class LinksController < ApplicationController
+  before_filter :require_signed_in_user
   before_filter :load_group
   before_filter :load_targets, :load_colors, :only => [:new, :edit, :create, :update]
 
@@ -12,7 +13,7 @@ class LinksController < ApplicationController
   end
 
   def edit
-    @link = Link.find(params[:id])
+    @link = @group.links.find(params[:id])
   end
 
   def update
@@ -22,22 +23,23 @@ class LinksController < ApplicationController
   end
 
   def index
+    @title = "Links in #{@group.title} - Linkage"
     @links = @group.links
   end
 
   def destroy
-    @link = Link.find(params[:id])
+    @link = @group.links.find(params[:id])
     @link.destroy
   end
 
   private
 
     def link_params
-      params.require(:link).permit(:title, :href, :target, :color_id, :background_color_id, :border_color_id)
+      params.require(:link).permit(:title, :href, :target, :color_id, :background_color_id, :border_color_id, :order_rank)
     end
 
     def load_group
-      @group = Group.find(params[:group_id])
+      @group = current_user.groups.find(params[:group_id])
     end
 
     def load_targets

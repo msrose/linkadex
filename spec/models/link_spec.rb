@@ -16,6 +16,7 @@ describe Link do
   it { should respond_to(:target) }
   it { should respond_to(:border_color) }
   it { should respond_to(:background_color) }
+  it { should respond_to(:order_rank) }
 
   describe "without an href" do
     before { link.href = nil }
@@ -38,13 +39,55 @@ describe Link do
   end
 
   describe "with a duplicate href" do
-    before { @duplicate_link = FactoryGirl.build(:link, :href => link.href) }
-    specify { @duplicate_link.should_not be_valid }
+    before { @duplicate_link = FactoryGirl.create(:link, :href => link.href) }
+
+    context "in the same group" do
+      before do
+        @duplicate_link.update_attribute(:group_id, link.group_id)
+        @duplicate_link.reload
+      end
+
+      it "is not valid" do
+        @duplicate_link.should_not be_valid
+      end
+    end
+
+    context "in a different group" do
+      before do
+        @duplicate_link.update_attribute(:group_id, FactoryGirl.create(:group).id)
+        @duplicate_link.reload
+      end
+
+      it "is not valid" do
+        @duplicate_link.should be_valid
+      end
+    end
   end
 
   describe "with a duplicate title" do
-    before { @duplicate_link = FactoryGirl.build(:link, :title => link.title) }
-    specify { @duplicate_link.should_not be_valid }
+    before { @duplicate_link = FactoryGirl.create(:link, :title => link.title) }
+
+    context "in the same group" do
+      before do
+        @duplicate_link.update_attribute(:group_id, link.group_id)
+        @duplicate_link.reload
+      end
+
+      it "is not valid" do
+        @duplicate_link.should_not be_valid
+      end
+    end
+
+    context "in a different group" do
+      before do
+        @duplicate_link.update_attribute(:group_id, FactoryGirl.create(:group).id)
+        @duplicate_link.reload
+      end
+
+      it "is not valid" do
+        @duplicate_link.should be_valid
+      end
+    end
   end
 
   describe "without a group" do
