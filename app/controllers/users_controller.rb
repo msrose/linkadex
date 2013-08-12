@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       UserMailer.verification_email(@user, verify_users_url(:token => @user.verification_token)).deliver
-      flash[:welcome] = 'Please verify your account to log in!'
+      flash[:welcome] = 'You have been sent an verification email: please read it to verfiy your account!'
       redirect_to signin_url
     else
       render :new
