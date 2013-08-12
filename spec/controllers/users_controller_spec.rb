@@ -22,6 +22,11 @@ describe UsersController do
       it "adds a new user to the database" do
         expect { post :create, :user => FactoryGirl.attributes_for(:user) }.to change(User, :count).by(1)
       end
+
+      it "redirects to the sign in page" do
+        post :create, :user => FactoryGirl.attributes_for(:user)
+        response.should redirect_to signin_url
+      end
     end
 
     context "with invalid attributes" do
