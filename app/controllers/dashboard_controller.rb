@@ -1,4 +1,5 @@
 class DashboardController < ApplicationController
+  before_filter :require_signed_in_user
   before_filter :load_groups
 
   def home
@@ -12,6 +13,6 @@ class DashboardController < ApplicationController
   private
 
     def load_groups
-      @groups = Group.includes(:links).order(:collapsed, :title)
+      @groups = current_user.groups.includes(:links).order(:collapsed, :title)
     end
 end

@@ -1,4 +1,5 @@
 class LinksController < ApplicationController
+  before_filter :require_signed_in_user
   before_filter :load_group
   before_filter :load_targets, :load_colors, :only => [:new, :edit, :create, :update]
 
@@ -38,7 +39,7 @@ class LinksController < ApplicationController
     end
 
     def load_group
-      @group = Group.find(params[:group_id])
+      @group = current_user.groups.find(params[:group_id])
     end
 
     def load_targets

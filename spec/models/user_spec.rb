@@ -56,6 +56,14 @@ describe User do
     user.email.should == "user@example.com"
   end
 
+  describe "with a password that is too short" do
+    before do
+      user.password = "hi"
+      user.password_confirmation = "hi"
+    end
+    it { should_not be_valid }
+  end
+
   describe "with mismatching password confirmation" do
     before do
       user.password = "lemon"

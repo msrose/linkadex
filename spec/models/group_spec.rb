@@ -40,6 +40,6 @@ describe Group do
 
   describe "without a user" do
     before { group.user_id = nil }
-    it
+    it { should_not be_valid }
   end
 end

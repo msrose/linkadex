@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe DashboardController do
+  before { override_authorization }
+
   describe "GET #home" do
     it "renders the home template" do
       get :home
@@ -8,7 +10,7 @@ describe DashboardController do
     end
 
     it "populates an array of groups" do
-      group = FactoryGirl.create(:group)
+      group = FactoryGirl.create(:group, :user_id => @current_user.id)
       get :home
       assigns(:groups).should == [group]
     end
@@ -24,8 +26,8 @@ describe DashboardController do
     end
 
     it "orders the groups by order rank" do
-      group = FactoryGirl.create(:group, :order_rank => 1254)
-      group2 = FactoryGirl.create(:group, :order_rank => 1)
+      group = FactoryGirl.create(:group, :order_rank => 1254, :user_id => @current_user.id)
+      group2 = FactoryGirl.create(:group, :order_rank => 1, :user_id => @current_user.id)
       get :home
       assigns(:groups).should include(group)
       assigns(:groups).should include(group2)
