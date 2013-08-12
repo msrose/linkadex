@@ -15,6 +15,9 @@ describe User do
   it { should respond_to(:groups) }
   it { should respond_to(:links) }
   it { should respond_to(:colors) }
+  it { should respond_to(:password) }
+  it { should respond_to(:password_confirmation) }
+  it { should respond_to(:remember_token) }
 
   describe "without a name" do
     before { user.name = "" }
