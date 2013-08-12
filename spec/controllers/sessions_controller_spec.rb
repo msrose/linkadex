@@ -23,6 +23,7 @@ describe SessionsController do
     context "with valid sign in credentials" do
       before do
         @user = FactoryGirl.create(:user, :password => "michael", :password_confirmation => "michael")
+        @user.verify!
         post :create, :session => { :email => @user.email, :password => "michael"  }
       end
 
