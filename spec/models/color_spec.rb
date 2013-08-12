@@ -47,8 +47,19 @@ describe Color do
 
   describe "with a duplicate alias" do
     context "with the same user" do
-      before { @duplicate_color = FactoryGirl.build(:color, :alias => color.alias, :user_id => color.user_id) }
+      before do
+        color.update_attribute(:alias, "something")
+        color.reload
+        @duplicate_color = FactoryGirl.build(:color, :alias => color.alias, :user_id => color.user_id)
+      end
       specify { @duplicate_color.should_not be_valid }
+
+      it "allows blank aliases" do
+        color.update_attribute(:alias, " ")
+        color.reload
+        @duplicate_color.alias = " "
+        @duplicate_color.should be_valid
+      end
     end
 
     context "with different users" do
