@@ -9,6 +9,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      UserMailer.verification_email(@user, verify_users_url(:token => @user.verification_token)).deliver
       flash[:welcome] = 'Please verify your account to log in!'
       redirect_to signin_url
     else
