@@ -11,11 +11,11 @@
   .control-group
     = f.label :password, :class => 'control-label'
     .controls
-      = f.text_field :password
+      = f.password_field :password
   .control-group
     = f.label :password_confirmation, 'Confirm Password', :class => 'control-label'
     .controls
-      = f.text_field :password_confirmation
+      = f.password_field :password_confirmation
   .control-group
     .controls
       = f.submit "#{@action}", :class => 'btn btn-primary'

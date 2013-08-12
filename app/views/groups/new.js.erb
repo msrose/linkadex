@@ -1,4 +1,4 @@
-<% if Color.any? %>
+<% if current_user.colors.any? %>
   <%= render 'shared/show_modal' %>
 <% else %>
   $("#groups").html('<div class="alert alert-error">Please add colors to your palette before creating a group!</div>');

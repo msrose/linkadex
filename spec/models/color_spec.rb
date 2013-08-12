@@ -78,6 +78,6 @@ describe Color do
 
   describe "without a user id" do
     before { color.user_id = nil }
-    it
+    it { should_not be_valid }
   end
 end

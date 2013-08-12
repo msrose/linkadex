@@ -1,11 +1,13 @@
 require 'spec_helper'
 
 describe LinksController do
+  before { override_authorization }
+
   it "triggers edit mode" do
     controller.should be_edit_mode
   end
 
-  let(:group) { FactoryGirl.create(:group) }
+  let(:group) { FactoryGirl.create(:group, :user_id => @current_user.id) }
   let(:group_link) { FactoryGirl.create(:link, :group_id => group.id) }
 
   describe "GET #index" do
