@@ -23,6 +23,10 @@ class User < ActiveRecord::Base
     SecureRandom.urlsafe_base64
   end
 
+  def verify!
+    self.update_attribute(:verified, true)
+  end
+
   private
 
     def create_remember_token

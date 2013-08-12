@@ -30,4 +30,34 @@ describe UsersController do
       end
     end
   end
+
+  describe "GET #verify" do
+    context "with a valid token" do
+      before do
+        @user = FactoryGirl.create(:user)
+        get :verify, :token => @user.verification_token
+      end
+
+      it "identifies the correct user" do
+        assigns(:user).should == @user
+      end
+
+      it "verifies the user" do
+        @user.reload
+        @user.should be_verified
+      end
+
+      it "renders the verification template" do
+        response.should render_template :verify
+      end
+    end
+
+    context "with an invalid token" do
+      before { get :verify, :token => "blah" }
+
+      it "redirects to the sign in page" do
+        response.should redirect_to signin_url
+      end
+    end
+  end
 end

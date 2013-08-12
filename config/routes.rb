@@ -3,7 +3,11 @@ Linkage::Application.routes.draw do
 
   get '/feed.:format' => 'dashboard#feed', :format => /json/
 
-  resources :users
+  resources :users do
+    collection do
+      get 'verify' => 'users#verify', :as => 'verify'
+    end
+  end
   get '/signup' => 'users#new'
 
   resources :sessions, :only => [:new, :create, :destroy]

@@ -17,6 +17,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def verify
+    @user = User.find_by_verification_token(params[:token])
+    if @user
+      @user.verify!
+    else
+      redirect_to signin_url
+    end
+  end
+
   private
 
     def user_params
