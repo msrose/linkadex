@@ -9,11 +9,20 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      sign_in(@user)
-      flash[:welcome] = 'Welcome to Linkage! Click on the pencil in the top right corner to get started.'
-      redirect_to root_url
+      UserMailer.verification_email(@user, verify_users_url(:token => @user.verification_token)).deliver
+      flash[:welcome] = 'You have been sent an verification email: please read it to verfiy your account!'
+      redirect_to signin_url
     else
       render :new
+    end
+  end
+
+  def verify
+    @user = User.find_by_verification_token(params[:token])
+    if @user
+      @user.verify!
+    else
+      redirect_to signin_url
     end
   end
 

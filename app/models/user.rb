@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   has_many :links, :through => :groups
   has_many :colors, :dependent => :destroy
   before_create :create_remember_token
+  before_save :create_verification_token
 
   validates :name, :presence => true
 
@@ -22,9 +23,17 @@ class User < ActiveRecord::Base
     SecureRandom.urlsafe_base64
   end
 
+  def verify!
+    self.update_attribute(:verified, true)
+  end
+
   private
 
     def create_remember_token
       self.remember_token = User.encrypt(User.new_remember_token)
+    end
+
+    def create_verification_token
+      self.verification_token = SecureRandom.urlsafe_base64
     end
 end

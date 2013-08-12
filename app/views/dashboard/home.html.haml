@@ -1,11 +1,9 @@
 - unless edit_mode?
   .row-fluid= link_to icon_for(:pencil), root_path(:mode => 'edit'), :class => 'pull-right', :title => 'Edit mode'
-- if flash[:welcome]
-  .alert.alert-info= flash[:welcome]
-- elsif current_user.colors.empty?
+- if current_user.colors.empty?
   .alert.alert-notice
     Start using Linkage by
-    = link_to('adding colors to your palette', colors_path)
+    = link_to 'adding colors to your palette', colors_path
 #home
   .groups
     = render :partial => 'group', :collection => @groups, :as => 'group'
