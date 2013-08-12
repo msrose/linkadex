@@ -11,7 +11,11 @@ class Color < ActiveRecord::Base
 
   validates :alias, :uniqueness => { :scope => :user_id }
 
+  def all_links
+    Link.select("DISTINCT links.*").where("color_id = ? OR background_color_id = ? OR border_color_id = ?", self.id, self.id, self.id)
+  end
+
   def in_use?
-    groups.any? || links.any?
+    groups.any? || all_links.any?
   end
 end

@@ -74,6 +74,18 @@ describe Color do
     it "is not in use without any groups or links" do
       color.should_not be_in_use
     end
+
+    it "is in use as a link background color" do
+      dummy_color = FactoryGirl.create(:color)
+      FactoryGirl.create(:link, :color_id => dummy_color.id, :background_color_id => color.id, :border_color_id => dummy_color.id)
+      color.should be_in_use
+    end
+
+    it "is in use as a link border color" do
+      dummy_color = FactoryGirl.create(:color)
+      FactoryGirl.create(:link, :color_id => dummy_color.id, :background_color_id => dummy_color.id, :border_color_id => color.id)
+      color.should be_in_use
+    end
   end
 
   describe "without a user id" do
