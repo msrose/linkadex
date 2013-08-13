@@ -1,6 +1,6 @@
-#Linkage
+#Linkadex
 
-You can sign up for a Linkage account at http://msrose-linkage.herokuapp.com.
+You can sign up for a Linkadex account at http://linkadex.herokuapp.com.
 
 Contents:
 * [About](#about)
@@ -16,13 +16,13 @@ Contents:
 
 ## About
 
-Linkage is a dynamic bookmark management application. What the heck does that even mean? Well, as an alternative to using bookmarks in a browser, I created a web page with my most frequently used links on it, specifically my first [personal page](http://www.michaelrose.heliohost.org). I soon found that all the links became outdated, because I would have to edit the source code every time I wanted to change, add, or remove a link. Linkage solves this problem by providing a web interface to manage a page of bookmarks.
+Linkadex is a dynamic bookmark management application. What the heck does that even mean? Well, as an alternative to using bookmarks in a browser, I created a web page with my most frequently used links on it, specifically my first [personal page](http://www.michaelrose.heliohost.org). I soon found that all the links became outdated, because I would have to edit the source code every time I wanted to change, add, or remove a link. Linkadex solves this problem by providing a web interface to manage a page of bookmarks.
 
 ## Terminology
 
 ### Groups
 
-A *group* is a container for many [links](#links). Groups can be used to, well, *group* similar links together. For example, on my Linkage page, there is a group called *Waterloo*, where I keep all of the links related to my studies at the University of Waterloo.
+A *group* is a container for many [links](#links). Groups can be used to, well, *group* similar links together. For example, on my Linkadex page, there is a group called *Waterloo*, where I keep all of the links related to my studies at the University of Waterloo.
 
 Configuration options for groups include:
 
@@ -49,7 +49,7 @@ A *link* is essentially a bookmark. A link belongs to a [group](#groups), and ha
 
 ### Colors
 
-Linkage requires every [link](#links) and [group](#groups) to be associated with a *color*. Created colors become part of the Linkage palette, and the option to use a color for a link or group is provided upon creation. Colors have two configuration options:
+Linkadex requires every [link](#links) and [group](#groups) to be associated with a *color*. Created colors become part of the Linkadex palette, and the option to use a color for a link or group is provided upon creation. Colors have two configuration options:
 
 | Option    | Description                                           | Required? |
 | ---       | ---                                                   | ---       |
@@ -75,8 +75,8 @@ The clean-up option will delete any colors that are not being used by a group or
 1. Fork the repository
 2. Clone it and create a new feature branch: `git checkout -b feature/my-awesome-feature`
 3. Push your branch: `git push origin feature/my-awesome-feature`
-4. Submit a [pull request](https://github.com/msrose/linkage/pulls)
+4. Submit a [pull request](https://github.com/msrose/linkadex/pulls)
 
 ## Version Information
 
-The current stable release of Linkage is [1.8.2](https://github.com/msrose/linkage/releases/tag/v1.8.2).
+The current stable release of Linkadex is [1.8.2](https://github.com/msrose/linkadex/releases/tag/v1.8.2).

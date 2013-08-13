@@ -22,7 +22,7 @@ class GroupsController < ApplicationController
   end
 
   def index
-    @title = 'Groups - Linkage'
+    @title = 'Groups - Linkadex'
     @groups = current_user.groups
   end
 

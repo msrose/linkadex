@@ -3,7 +3,7 @@ class DashboardController < ApplicationController
   before_filter :load_groups
 
   def home
-    @title = 'Dashboard - Linkage'
+    @title = 'Dashboard - Linkadex'
   end
 
   def feed

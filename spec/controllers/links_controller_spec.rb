@@ -33,7 +33,7 @@ describe LinksController do
 
     it "sets the title of the page" do
       get :index, :group_id => group.id
-      assigns(:title).should == "Links in #{group.title} - Linkage"
+      assigns(:title).should == "Links in #{group.title} - Linkadex"
     end
   end
 

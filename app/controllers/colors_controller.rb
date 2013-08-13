@@ -21,7 +21,7 @@ class ColorsController < ApplicationController
   end
 
   def index
-    @title = 'Colors - Linkage'
+    @title = 'Colors - Linkadex'
     @colors = current_user.colors.order('hex_value')
   end
 

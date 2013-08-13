@@ -1,4 +1,4 @@
-Linkage::Application.routes.draw do
+Linkadex::Application.routes.draw do
   root :to => 'dashboard#home'
 
   get '/feed.:format' => 'dashboard#feed', :format => /json/
