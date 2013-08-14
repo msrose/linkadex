@@ -6,7 +6,7 @@
     = javascript_include_tag 'application'
     = csrf_meta_tags
   %body
-    - if edit_mode? && signed_in?
+    - if edit_mode?
       .container-fluid
         .navbar.navbar-static-top
           .navbar-inner
@@ -14,16 +14,24 @@
             %ul.nav
               %li.divider-vertical
               %li{ :class => params[:controller] == 'dashboard' ? 'active' : '' }= link_to 'Home', root_path(:mode => 'edit')
-              %li{ :class => %w(groups links).include?(params[:controller]) ? 'active' : '' }= link_to 'Groups', groups_path
-              %li{ :class => params[:controller] == 'colors' ? 'active' : '' }= link_to 'Colors', colors_path
+              %li{ :class => params[:controller] == 'documentation' ? 'active' : '' }= link_to 'Docs', docs_root_path
+              - if signed_in?
+                %li{ :class => %w(groups links).include?(params[:controller]) ? 'active' : '' }= link_to 'Groups', groups_path
+                %li{ :class => params[:controller] == 'colors' ? 'active' : '' }= link_to 'Colors', colors_path
+              - else
+                %li{ :class => params[:controller] == 'users' ? 'active' : '' }= link_to 'Sign Up', signup_path
             %ul.nav.pull-right
-              %li.dropdown
-                = link_to 'Mode ▼', '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'
-                %ul.dropdown-menu
-                  %li= link_to 'Normal', root_path
-                  %li= link_to icon_for(:ok) + ' Edit', root_path(:mode => 'edit')
-              %li
-                = link_to 'Sign out', signout_path
+              - if signed_in?
+                %li.dropdown
+                  = link_to 'Mode ▼', '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'
+                  %ul.dropdown-menu
+                    %li= link_to 'Normal', root_path
+                    %li= link_to icon_for(:ok) + ' Edit', root_path(:mode => 'edit')
+                %li
+                  = link_to 'Sign out', signout_path
+              - else
+                %li
+                  = link_to 'Sign in', signin_path
     .container-fluid
       #modal.modal.hide.fade{ :tabindex => '-1', :role => 'dialog', 'aria-laballedby' => 'modal_label', 'aria-hidden' => 'true' }
       .content

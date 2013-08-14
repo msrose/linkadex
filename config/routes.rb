@@ -1,6 +1,4 @@
 Linkadex::Application.routes.draw do
-  root :to => 'dashboard#home'
-
   get '/feed.:format' => 'dashboard#feed', :format => /json/
 
   resources :users do
@@ -23,6 +21,15 @@ Linkadex::Application.routes.draw do
       delete 'clean-up' => 'colors#clean_up', :as => 'clean_up'
     end
   end
+
+  scope '/docs' do
+    root :to => 'documentation#index', :as => 'docs_root'
+    get '/getting-started' => 'documentation#getting_started', :as => 'docs_getting_started'
+    get '/creating-links' => 'documentation#creating_links', :as => 'docs_creating_links'
+    get '/features' => 'documentation#features', :as => 'docs_features'
+  end
+
+  root :to => 'dashboard#home'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
