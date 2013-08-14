@@ -22,11 +22,11 @@ Linkadex::Application.routes.draw do
     end
   end
 
-  scope '/docs' do
-    root :to => 'documentation#index', :as => 'docs_root'
-    get '/getting-started' => 'documentation#getting_started', :as => 'docs_getting_started'
-    get '/creating-links' => 'documentation#creating_links', :as => 'docs_creating_links'
-    get '/features' => 'documentation#features', :as => 'docs_features'
+  namespace :docs do
+    root :to => 'documentation#index'
+    get '/getting-started' => 'documentation#getting_started', :as => 'getting_started'
+    get '/creating-links' => 'documentation#creating_links', :as => 'creating_links'
+    get '/features' => 'documentation#features', :as => 'features'
   end
 
   root :to => 'dashboard#home'

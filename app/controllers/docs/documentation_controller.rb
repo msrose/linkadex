@@ -1,4 +1,4 @@
-class DocumentationController < ApplicationController
+class Docs::DocumentationController < ApplicationController
   def index
     @title = 'Documentation - Linkadex'
   end
