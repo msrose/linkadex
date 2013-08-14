@@ -1,6 +1,7 @@
 #Linkadex
 
 You can sign up for a Linkadex account at http://linkadex.herokuapp.com.
+Detailed documentation can be found [here](https://linkadex.herokuapp.com/docs).
 
 Contents:
 * [About](#about)
@@ -16,7 +17,29 @@ Contents:
 
 ## About
 
-Linkadex is a dynamic bookmark management application. What the heck does that even mean? Well, as an alternative to using bookmarks in a browser, I created a web page with my most frequently used links on it, specifically my first [personal page](http://www.michaelrose.heliohost.org). I soon found that all the links became outdated, because I would have to edit the source code every time I wanted to change, add, or remove a link. Linkadex solves this problem by providing a web interface to manage a page of bookmarks.
+> What is Linkadex?
+
+Linkadex is a dynamic bookmark management application.
+
+> What the heck is a dynamic bookmark management application?
+
+Linkadex provides each user with a means of managing website bookmarks from within a web application. This way, you can have a personlized page of attractive links to the pages you use most frequently.
+
+> But doesn't my web browser do that already?
+
+In a sense, yes. But something like Linkadex is truly cross platform. It can be accessed from any browser on any modern device, without having to install any programs or import bookmarks from somewhere else. Linkadex allows your bookmarks to shine on their own dedicated page.
+
+> How did you come up with the idea for Linkadex?
+
+I implemented something similar on my first [personal page](http://www.michaelrose.heliohost.org). However, since the links were hard coded into the page, they all became outdated, because I would have to edit the source code every time I wanted to change, add, or remove a something. Linkadex solves this problem by letting users do all the dirty work quickly and easily just by logging in.
+
+> How did you come up with the name?
+
+Link + index = Linkadex. Which is essentially what Linkadex is, an index page for your links. A friend pointed out to me that Linkadex sounds like [Rolodex](http://en.wikipedia.org/wiki/Rolodex), which is another good analogy.
+
+> How do I get started with Linkadex?
+
+Visit the [home page](https://linkadex.herokuapp.com). Here you can sign up for an account, and after receiving your verification email you're all set. Please see the [docs](https://linkadex.herokuapp.com/docs) for more information on how to use the application.
 
 ## Terminology
 
