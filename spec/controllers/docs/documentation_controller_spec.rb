@@ -5,7 +5,7 @@ describe Docs::DocumentationController do
     before { get :index }
 
     it "renders the index template" do
-      response.status.should == 200
+      response.should render_template :index
     end
 
     it "provides the correct title" do
@@ -17,7 +17,7 @@ describe Docs::DocumentationController do
     before { get :features }
 
     it "renders the features template" do
-      response.status.should == 200
+      response.should render_template :features
     end
 
     it "provides the correct title" do
@@ -29,7 +29,7 @@ describe Docs::DocumentationController do
     before { get :getting_started }
 
     it "renders the getting_started template" do
-      response.status.should == 200
+      response.should render_template :getting_started
     end
 
     it "provides the correct title" do
@@ -41,7 +41,7 @@ describe Docs::DocumentationController do
     before { get :creating_links }
 
     it "renders the creating_links template" do
-      response.status.should == 200
+      response.should render_template :creating_links
     end
 
     it "provides the correct title" do
