@@ -22,7 +22,7 @@ Linkadex::Application.routes.draw do
     end
   end
 
-  namespace :docs do
+  namespace :about do
     root :to => 'documentation#index'
     get '/getting-started' => 'documentation#getting_started', :as => 'getting_started'
     get '/creating-links' => 'documentation#creating_links', :as => 'creating_links'

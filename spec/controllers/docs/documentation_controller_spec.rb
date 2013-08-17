@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Docs::DocumentationController do
+describe About::DocumentationController do
   describe "GET #index" do
     before { get :index }
 
