@@ -1,7 +1,7 @@
 module About
-  class DocumentationController < ApplicationController
+  class TutorialsController < ApplicationController
     def index
-      @title = 'Documentation - Linkadex'
+      @title = 'Tutorials - Linkadex'
     end
 
     def getting_started

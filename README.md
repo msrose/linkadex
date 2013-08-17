@@ -1,7 +1,7 @@
 #Linkadex
 
 You can sign up for a Linkadex account at http://linkadex.herokuapp.com.
-Detailed documentation can be found [here](https://linkadex.herokuapp.com/docs).
+Detailed documentation can be found [here](https://linkadex.herokuapp.com/about).
 
 Contents:
 * [About](#about)

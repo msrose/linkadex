@@ -23,10 +23,10 @@ Linkadex::Application.routes.draw do
   end
 
   namespace :about do
-    root :to => 'documentation#index'
-    get '/getting-started' => 'documentation#getting_started', :as => 'getting_started'
-    get '/creating-links' => 'documentation#creating_links', :as => 'creating_links'
-    get '/features' => 'documentation#features', :as => 'features'
+    root :to => 'tutorials#index'
+    get '/getting-started' => 'tutorials#getting_started', :as => 'getting_started'
+    get '/creating-links' => 'tutorials#creating_links', :as => 'creating_links'
+    get '/features' => 'tutorials#features', :as => 'features'
   end
 
   root :to => 'dashboard#home'

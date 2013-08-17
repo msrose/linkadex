@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe About::DocumentationController do
+describe About::TutorialsController do
   describe "GET #index" do
     before { get :index }
 
@@ -9,7 +9,7 @@ describe About::DocumentationController do
     end
 
     it "provides the correct title" do
-      assigns(:title).should == 'Documentation - Linkadex'
+      assigns(:title).should == 'Tutorials - Linkadex'
     end
   end
 
