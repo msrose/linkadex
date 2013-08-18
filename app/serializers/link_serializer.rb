@@ -6,10 +6,10 @@ class LinkSerializer < ActiveModel::Serializer
   end
 
   def border_color
-    object.color.hex_value
+    object.border_color.hex_value
   end
 
   def background_color
-    object.color.hex_value
+    object.background_color.hex_value
   end
 end
