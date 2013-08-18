@@ -1,6 +1,4 @@
-Linkage::Application.routes.draw do
-  root :to => 'dashboard#home'
-
+Linkadex::Application.routes.draw do
   get '/feed.:format' => 'dashboard#feed', :format => /json/
 
   resources :users do
@@ -23,6 +21,18 @@ Linkage::Application.routes.draw do
       delete 'clean-up' => 'colors#clean_up', :as => 'clean_up'
     end
   end
+
+  namespace :about do
+    root :to => 'static_pages#index'
+    namespace :tutorials do
+      root :to => 'static_pages#index'
+      get '/getting-started' => 'static_pages#getting_started', :as => 'getting_started'
+      get '/creating-links' => 'static_pages#creating_links', :as => 'creating_links'
+      get '/features' => 'static_pages#features', :as => 'features'
+    end
+  end
+
+  root :to => 'dashboard#home'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

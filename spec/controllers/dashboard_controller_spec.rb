@@ -36,7 +36,7 @@ describe DashboardController do
 
     it "sets the title of the page" do
       get :home
-      assigns(:title).should == 'Dashboard - Linkage'
+      assigns(:title).should == 'Dashboard - Linkadex'
     end
   end
 

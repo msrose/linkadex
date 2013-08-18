@@ -23,7 +23,7 @@ class LinksController < ApplicationController
   end
 
   def index
-    @title = "Links in #{@group.title} - Linkage"
+    @title = "Links in #{@group.title} - Linkadex"
     @links = @group.links
   end
 

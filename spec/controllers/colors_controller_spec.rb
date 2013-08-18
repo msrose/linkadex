@@ -23,7 +23,7 @@ describe ColorsController do
 
     it "sets the title of the page" do
       get :index
-      assigns(:title).should == 'Colors - Linkage'
+      assigns(:title).should == 'Colors - Linkadex'
     end
   end
 

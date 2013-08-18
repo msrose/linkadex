@@ -32,7 +32,7 @@ describe GroupsController do
 
     it "sets the title of the page" do
       get :index
-      assigns(:title).should == 'Groups - Linkage'
+      assigns(:title).should == 'Groups - Linkadex'
     end
   end
 

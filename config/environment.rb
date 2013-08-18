@@ -2,7 +2,7 @@
 require File.expand_path('../application', __FILE__)
 
 # Initialize the rails application
-Linkage::Application.initialize!
+Linkadex::Application.initialize!
 
 # Configure ActionMailer SMTP settings
 mail_settings_filename = "#{Rails.root.to_s}/config/mail_settings.yml"

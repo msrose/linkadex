@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Linkage::Application.load_tasks
+Linkadex::Application.load_tasks
