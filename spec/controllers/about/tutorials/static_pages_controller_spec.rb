@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe About::TutorialsController do
+describe About::Tutorials::StaticPagesController do
   describe "GET #index" do
     before { get :index }
 
