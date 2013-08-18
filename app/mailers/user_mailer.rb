@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default :from => "Linkage <linkage.notifier@gmail.com>"
+  default :from => "Linkadex <linkadex.notifier@gmail.com>"
 
   def verification_email(user, link)
     @user = user

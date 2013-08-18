@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
     end
 
     def title
-      @title ||= 'Linkage'
+      @title ||= 'Linkadex'
     end
 
     def sign_in(user)
