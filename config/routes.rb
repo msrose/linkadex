@@ -2,9 +2,7 @@ Linkadex::Application.routes.draw do
   get '/feed.:format' => 'dashboard#feed', :format => /json/
 
   resources :users do
-    collection do
-      get 'verify' => 'users#verify', :as => 'verify'
-    end
+    get 'verify' => 'users#verify', :on => :collection
   end
   get '/signup' => 'users#new'
 
@@ -17,9 +15,7 @@ Linkadex::Application.routes.draw do
   end
 
   resources :colors, :except => :show do
-    collection do
-      delete 'clean-up' => 'colors#clean_up', :as => 'clean_up'
-    end
+    delete 'clean-up' => 'colors#clean_up', :as => 'clean_up', :on => :collection
   end
 
   namespace :about do
