@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130812033637) do
+ActiveRecord::Schema.define(:version => 20130825195313) do
 
   create_table "colors", :force => true do |t|
     t.string   "hex_value"
@@ -59,10 +59,9 @@ ActiveRecord::Schema.define(:version => 20130812033637) do
     t.string   "name"
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at",                            :null => false
-    t.datetime "updated_at",                            :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.string   "remember_token"
-    t.boolean  "verified",           :default => false
     t.string   "verification_token"
   end
 

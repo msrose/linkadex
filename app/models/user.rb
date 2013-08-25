@@ -2,8 +2,7 @@ class User < ActiveRecord::Base
   has_many :groups, :dependent => :destroy
   has_many :links, :through => :groups
   has_many :colors, :dependent => :destroy
-  before_create :create_remember_token
-  before_save :create_verification_token
+  before_create :create_remember_token, :create_verification_token
 
   validates :name, :presence => true
 
@@ -23,8 +22,12 @@ class User < ActiveRecord::Base
     SecureRandom.urlsafe_base64
   end
 
+  def verified?
+    self.verification_token.nil?
+  end
+
   def verify!
-    self.update_attribute(:verified, true)
+    self.update_attribute(:verification_token, nil)
   end
 
   private
