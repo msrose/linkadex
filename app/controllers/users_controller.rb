@@ -17,6 +17,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+    @user = User.find(params[:id])
+  end
+
   def verify
     @user = User.find_by_verification_token(params[:token])
     if @user

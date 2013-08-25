@@ -65,4 +65,19 @@ describe UsersController do
       end
     end
   end
+
+  describe "GET #show" do
+    before do
+      @user = FactoryGirl.create(:user)
+      get :show, :id => @user.id
+    end
+
+    it "renders the show template" do
+      response.should render_template :show
+    end
+
+    it "finds the correct user" do
+      assigns(:user).should == @user
+    end
+  end
 end
