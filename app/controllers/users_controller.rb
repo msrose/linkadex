@@ -19,6 +19,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @groups = @user.groups.where(:private => false).includes(:links).order(:collapsed, :title)
   end
 
   def verify

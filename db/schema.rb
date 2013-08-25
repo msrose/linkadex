@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130825195313) do
+ActiveRecord::Schema.define(:version => 20130825210949) do
 
   create_table "colors", :force => true do |t|
     t.string   "hex_value"
@@ -27,11 +27,12 @@ ActiveRecord::Schema.define(:version => 20130825195313) do
   create_table "groups", :force => true do |t|
     t.string   "title"
     t.boolean  "collapsed"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
     t.integer  "color_id"
     t.integer  "order_rank"
     t.integer  "user_id"
+    t.boolean  "private",    :default => false
   end
 
   add_index "groups", ["color_id"], :name => "index_groups_on_color_id"

@@ -79,5 +79,15 @@ describe UsersController do
     it "finds the correct user" do
       assigns(:user).should == @user
     end
+
+    it "populates a list of public groups" do
+      group = FactoryGirl.create(:group, :private => false, :user_id => @user.id)
+      assigns(:groups).should include(group)
+    end
+
+    it "does not include private groups" do
+      group = FactoryGirl.create(:group, :private => true, :user_id => @user.id)
+      assigns(:groups).should_not include(group)
+    end
   end
 end
