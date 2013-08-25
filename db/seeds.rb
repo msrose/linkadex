@@ -16,6 +16,12 @@ if Rails.env.development?
   Group.destroy_all
   Link.destroy_all
 
+  michael = User.create(:name => 'Michael',
+                        :email => 'ekimsc1094@sympatico.ca',
+                        :password => 'abc123',
+                        :password_confirmation => 'abc123')
+  michael.verify!
+
   5.times do
     User.create(:name => Faker::Name.name,
                 :email => Faker::Internet.email,
