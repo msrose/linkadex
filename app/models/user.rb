@@ -30,6 +30,11 @@ class User < ActiveRecord::Base
     self.update_attribute(:verification_token, nil)
   end
 
+  def unverify!
+    create_verification_token
+    self.save
+  end
+
   private
 
     def create_remember_token

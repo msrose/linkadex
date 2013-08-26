@@ -103,4 +103,96 @@ describe UsersController do
       assigns(:users).should include(user)
     end
   end
+
+  describe "GET #edit" do
+    before do
+      @user = FactoryGirl.create(:user)
+      @user.verify!
+    end
+
+    context "without a signed in user" do
+      it "redirects to the user show page" do
+        get :edit, :id => @user.id
+        response.should redirect_to user_path(@user)
+      end
+    end
+
+    context "as the current user" do
+      before { controller.send(:sign_in, @user) }
+
+      it "doesn't let the user edit other users" do
+        user2 = FactoryGirl.create(:user)
+        get :edit, :id => user2.id
+        response.should redirect_to user_path(user2)
+      end
+
+      it "renders the edit template" do
+        get :edit, :id => @user.id
+        response.should render_template :edit
+      end
+
+      it "finds the correct user" do
+        get :edit, :id => @user.id
+        assigns(:user).should == @user
+      end
+    end
+  end
+
+  describe "PUT #update" do
+    context "as an invalid user" do
+      before { @user = FactoryGirl.create(:user) }
+
+      it "redirects to the user show page" do
+        put :update, :id => @user.id
+        response.should redirect_to user_path(@user)
+      end
+    end
+
+    context "as the current user" do
+      context "with valid attributes" do
+        before { override_authorization }
+
+        context "with the same email" do
+          before do
+            put :update, :id => @current_user.id, :user => FactoryGirl.attributes_for(:user, :email => @current_user.email)
+            @current_user.reload
+          end
+
+          specify "the user should still be verified" do
+            @current_user.should be_verified
+          end
+
+          it "redirects to the users public profile" do
+            response.should redirect_to user_path(@current_user)
+          end
+        end
+
+        context "with a different email" do
+          before do
+            put :update, :id => @current_user.id, :user => FactoryGirl.attributes_for(:user)
+            @current_user.reload
+          end
+
+          specify "the user should not be verified" do
+            @current_user.should_not be_verified
+          end
+
+          it "redirect to the sign in path" do
+            response.should redirect_to signin_path
+          end
+        end
+      end
+
+      context "with invalid attributes" do
+        before { override_authorization }
+
+        it "does not change the user" do
+          old_name = @current_user.name
+          put :update, :id => @current_user.id, :user => FactoryGirl.attributes_for(:user, :name => " ")
+          @current_user.reload
+          @current_user.name.should == old_name
+        end
+      end
+    end
+  end
 end
