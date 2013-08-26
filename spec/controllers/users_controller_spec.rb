@@ -90,4 +90,17 @@ describe UsersController do
       assigns(:groups).should_not include(group)
     end
   end
+
+  describe "GET #index" do
+    it "renders the index template" do
+      get :index
+      response.should render_template :index
+    end
+
+    it "populates an array of users" do
+      user = FactoryGirl.create(:user)
+      get :index
+      assigns(:users).should include(user)
+    end
+  end
 end

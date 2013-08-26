@@ -22,6 +22,10 @@ class UsersController < ApplicationController
     @groups = @user.groups.where(:private => false).includes(:links).order(:collapsed, :title)
   end
 
+  def index
+    @users = User.order(:name)
+  end
+
   def verify
     @user = User.find_by_verification_token(params[:token])
     if @user
