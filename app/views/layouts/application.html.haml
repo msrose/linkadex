@@ -20,7 +20,7 @@
                 %li{ :class => %w(groups links).include?(params[:controller]) ? 'active' : '' }= link_to 'Groups', groups_path
                 %li{ :class => params[:controller] == 'colors' ? 'active' : '' }= link_to 'Colors', colors_path
               - else
-                %li{ :class => params[:controller] == 'users' ? 'active' : '' }= link_to 'Sign Up', signup_path
+                %li{ :class => params[:controller] == 'users' && action_name == 'new' ? 'active' : '' }= link_to 'Sign Up', signup_path
             %ul.nav.pull-right
               - if signed_in?
                 %li.dropdown
@@ -35,8 +35,7 @@
                     %li= link_to 'Public Profile', current_user
                     %li= link_to 'Sign out', signout_path
               - else
-                %li
-                  = link_to 'Sign in', signin_path
+                %li{ :class => controller_name == 'sessions' && action_name == 'new' ? 'active' : '' }= link_to 'Sign in', signin_path
     .container-fluid
       #modal.modal.hide.fade{ :tabindex => '-1', :role => 'dialog', 'aria-laballedby' => 'modal_label', 'aria-hidden' => 'true' }
       .content
