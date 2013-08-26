@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
 
   has_secure_password
 
-  validates :password, :length => { :minimum => 6 }
+  validates :password, :length => { :minimum => 6 }, :if => :validate_password?
 
   def User.encrypt(token)
     Digest::SHA1.hexdigest(token.to_s)
@@ -43,5 +43,9 @@ class User < ActiveRecord::Base
 
     def create_verification_token
       self.verification_token = SecureRandom.urlsafe_base64
+    end
+
+    def validate_password?
+      password.present? || password_confirmation.present?
     end
 end

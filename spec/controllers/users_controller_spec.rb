@@ -181,6 +181,17 @@ describe UsersController do
             response.should redirect_to signin_path
           end
         end
+
+        context "without a password" do
+          before do
+            put :update, :id => @current_user.id, :user => FactoryGirl.attributes_for(:user, :name => "Michael", :email => @current_user.email, :password => nil, :password_confirmation => nil)
+            @current_user.reload
+          end
+
+          it "updates the user" do
+            @current_user.name.should == "Michael"
+          end
+        end
       end
 
       context "with invalid attributes" do
