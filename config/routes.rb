@@ -2,7 +2,11 @@ Linkadex::Application.routes.draw do
   get '/feed.:format' => 'dashboard#feed', :format => /json/
 
   resources :users do
-    get 'verify' => 'users#verify', :on => :collection
+    collection do
+      get 'verify' => 'users#verify'
+      get 'forgotten' => 'users#forgotten'
+      put 'reset' => 'users#reset'
+    end
   end
   get '/signup' => 'users#new'
 

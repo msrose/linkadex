@@ -206,4 +206,62 @@ describe UsersController do
       end
     end
   end
+
+  describe "GET #forgotten" do
+    context "with no signed in user" do
+      before { get :forgotten }
+
+      it "renders the forgotten page" do
+        response.should render_template :forgotten
+      end
+    end
+
+    context "with a signed in user" do
+      before do
+        override_authorization
+        get :forgotten
+      end
+
+      it "redirects to the user page" do
+        response.should redirect_to user_path(@current_user)
+      end
+    end
+  end
+
+  describe "PUT #reset" do
+    context "with a signed in user" do
+      before do
+        override_authorization
+        put :reset, :user => { :email => @current_user.email }
+      end
+
+      it "redirects to the user page" do
+        response.should redirect_to user_path(@current_user)
+      end
+    end
+
+    context "with a correct email" do
+      before do
+        @user = FactoryGirl.create(:user)
+        @old_digest = @user.password_digest
+        put :reset, :user => { :email => @user.email }
+      end
+
+      it "redirects to the sign in page" do
+        response.should redirect_to signin_path
+      end
+
+      it "changes the password digest" do
+        @old_digest.should_not == @user.password_digest
+      end
+    end
+
+    context "with an invalid email" do
+      before { put :reset, :user => { :email => 'never_seen@before.com' } }
+
+      it "renders the forgotten template" do
+        response.should render_template :forgotten
+      end
+    end
+  end
 end

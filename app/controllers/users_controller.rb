@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_filter :get_action, :only => [:new, :create, :edit, :update]
   before_filter :require_current_user, :only => [:edit, :update]
+  before_filter :require_not_signed_in, :only => [:forgotten, :reset]
 
   def new
     @action = 'Sign up'
@@ -57,6 +58,23 @@ class UsersController < ApplicationController
     end
   end
 
+  def forgotten
+  end
+
+  def reset
+    @user = User.find_by_email(params[:user][:email])
+    if @user
+      new_password = [('A'..'Z'), ('a'..'z'), (0..9)].map(&:to_a).flatten.sample(8).join
+      @user.update_attributes(:password => new_password, :password_confirmation => new_password)
+      UserMailer.forgotten_password(@user, new_password, signin_url).deliver
+      flash[:welcome] = 'Password successfully updated. Please check your email.'
+      redirect_to signin_url
+    else
+      flash[:error] = 'Sorry, that email is not associated with an account.'
+      render :forgotten
+    end
+  end
+
   private
 
     def user_params
@@ -70,5 +88,9 @@ class UsersController < ApplicationController
     def require_current_user
       @user = User.find(params[:id])
       redirect_to @user unless @user == current_user
+    end
+
+    def require_not_signed_in
+      redirect_to current_user if signed_in?
     end
 end
