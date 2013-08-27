@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_filter :get_action, :only => [:new, :create, :edit, :update]
-  before_filter :require_current_user, :only => [:edit, :update]
+  before_filter :require_current_user, :only => [:edit, :update, :destroy]
   before_filter :require_not_signed_in, :only => [:forgotten, :reset]
 
   def new
@@ -73,6 +73,12 @@ class UsersController < ApplicationController
       flash[:error] = 'Sorry, that email is not associated with an account.'
       render :forgotten
     end
+  end
+
+  def destroy
+    @user.destroy
+    sign_out
+    redirect_to signin_url
   end
 
   private

@@ -264,4 +264,19 @@ describe UsersController do
       end
     end
   end
+
+  describe "DELETE #destroy" do
+    before { override_authorization }
+
+    context "as the current user" do
+      it "deletes the user's account" do
+        expect { delete :destroy, :id => @current_user.id }.to change(User, :count).by(-1)
+      end
+
+      it "redirects to the sign in path" do
+        delete :destroy, :id => @current_user.id
+        response.should redirect_to signin_path
+      end
+    end
+  end
 end
