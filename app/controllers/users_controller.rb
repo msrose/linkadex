@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_filter :get_action, :only => [:new, :create, :edit, :update]
+  before_filter :set_user, :only => :show
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   before_filter :require_not_signed_in, :only => [:forgotten, :reset]
 
@@ -41,7 +42,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
     @groups = @user.groups.where(:private => false).includes(:links).order(:collapsed, :title)
   end
 
@@ -91,8 +91,12 @@ class UsersController < ApplicationController
       @action = params[:action] =~ /new|create/ ? 'Sign up' : 'Update info'
     end
 
+    def set_user
+      @user = User.find_by_username(params[:username].downcase)
+    end
+
     def require_current_user
-      @user = User.find(params[:id])
+      set_user
       redirect_to @user unless @user == current_user
     end
 

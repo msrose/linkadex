@@ -69,7 +69,7 @@ describe UsersController do
   describe "GET #show" do
     before do
       @user = FactoryGirl.create(:user)
-      get :show, :id => @user.id
+      get :show, :username => @user.username
     end
 
     it "renders the show template" do
@@ -112,7 +112,7 @@ describe UsersController do
 
     context "without a signed in user" do
       it "redirects to the user show page" do
-        get :edit, :id => @user.id
+        get :edit, :username => @user.username
         response.should redirect_to user_path(@user)
       end
     end
@@ -122,17 +122,17 @@ describe UsersController do
 
       it "doesn't let the user edit other users" do
         user2 = FactoryGirl.create(:user)
-        get :edit, :id => user2.id
+        get :edit, :username => user2.username
         response.should redirect_to user_path(user2)
       end
 
       it "renders the edit template" do
-        get :edit, :id => @user.id
+        get :edit, :username => @user.username
         response.should render_template :edit
       end
 
       it "finds the correct user" do
-        get :edit, :id => @user.id
+        get :edit, :username => @user.username
         assigns(:user).should == @user
       end
     end
@@ -143,7 +143,7 @@ describe UsersController do
       before { @user = FactoryGirl.create(:user) }
 
       it "redirects to the user show page" do
-        put :update, :id => @user.id
+        put :update, :username => @user.username
         response.should redirect_to user_path(@user)
       end
     end
@@ -154,7 +154,7 @@ describe UsersController do
 
         context "with the same email" do
           before do
-            put :update, :id => @current_user.id, :user => FactoryGirl.attributes_for(:user, :email => @current_user.email)
+            put :update, :username => @current_user.username, :user => FactoryGirl.attributes_for(:user, :email => @current_user.email)
             @current_user.reload
           end
 
@@ -169,7 +169,7 @@ describe UsersController do
 
         context "with a different email" do
           before do
-            put :update, :id => @current_user.id, :user => FactoryGirl.attributes_for(:user)
+            put :update, :username => @current_user.username, :user => FactoryGirl.attributes_for(:user)
             @current_user.reload
           end
 
@@ -184,7 +184,7 @@ describe UsersController do
 
         context "without a password" do
           before do
-            put :update, :id => @current_user.id, :user => FactoryGirl.attributes_for(:user, :name => "Michael", :email => @current_user.email, :password => nil, :password_confirmation => nil)
+            put :update, :username => @current_user.username, :user => FactoryGirl.attributes_for(:user, :name => "Michael", :email => @current_user.email, :password => nil, :password_confirmation => nil)
             @current_user.reload
           end
 
@@ -199,7 +199,7 @@ describe UsersController do
 
         it "does not change the user" do
           old_name = @current_user.name
-          put :update, :id => @current_user.id, :user => FactoryGirl.attributes_for(:user, :name => " ")
+          put :update, :username => @current_user.username, :user => FactoryGirl.attributes_for(:user, :name => " ")
           @current_user.reload
           @current_user.name.should == old_name
         end
@@ -270,11 +270,11 @@ describe UsersController do
 
     context "as the current user" do
       it "deletes the user's account" do
-        expect { delete :destroy, :id => @current_user.id }.to change(User, :count).by(-1)
+        expect { delete :destroy, :username => @current_user.username }.to change(User, :count).by(-1)
       end
 
       it "redirects to the sign in path" do
-        delete :destroy, :id => @current_user.id
+        delete :destroy, :username => @current_user.username
         response.should redirect_to signin_path
       end
     end

@@ -1,15 +1,6 @@
 Linkadex::Application.routes.draw do
   get '/feed.:format' => 'dashboard#feed', :format => /json/
 
-  resources :users do
-    collection do
-      get 'verify' => 'users#verify'
-      get 'forgotten' => 'users#forgotten'
-      put 'reset' => 'users#reset'
-    end
-  end
-  get '/signup' => 'users#new'
-
   resources :sessions, :only => [:new, :create, :destroy]
   get '/signin' => 'sessions#new'
   get '/signout' => 'sessions#destroy'
@@ -31,6 +22,19 @@ Linkadex::Application.routes.draw do
       get '/features' => 'static_pages#features', :as => 'features'
     end
   end
+
+  get '/signup' => 'users#new'
+  post '/users' => 'users#create'
+  scope '/users' do
+    root :to => 'users#index'
+    get 'verify' => 'users#verify', :as => 'verify_users'
+    get 'forgotten' => 'users#forgotten', :as => 'forgotten_users'
+    put 'reset' => 'users#reset', :as => 'reset_users'
+  end
+  get '/:username' => 'users#show', :as => 'user'
+  get '/:username/edit' => 'users#edit', :as => 'edit_user'
+  put '/:username' => 'users#update'
+  delete '/:username' => 'users#destroy'
 
   root :to => 'dashboard#home'
 
