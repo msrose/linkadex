@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  before_save { self.username.downcase! }
+  validates :username, :format => { :with => /\A[A-Za-z0-9\-_.]+\z/ }, :uniqueness => { :case_sensitive => false }
+
   has_many :groups, :dependent => :destroy
   has_many :links, :through => :groups
   has_many :colors, :dependent => :destroy

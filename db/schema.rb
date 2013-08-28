@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130825210949) do
+ActiveRecord::Schema.define(:version => 20130828201002) do
 
   create_table "colors", :force => true do |t|
     t.string   "hex_value"
@@ -64,10 +64,12 @@ ActiveRecord::Schema.define(:version => 20130825210949) do
     t.datetime "updated_at",         :null => false
     t.string   "remember_token"
     t.string   "verification_token"
+    t.string   "username"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
+  add_index "users", ["username"], :name => "index_users_on_username", :unique => true
   add_index "users", ["verification_token"], :name => "index_users_on_verification_token"
 
 end
