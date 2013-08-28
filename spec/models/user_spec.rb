@@ -18,8 +18,8 @@ describe User do
   it { should respond_to(:password) }
   it { should respond_to(:password_confirmation) }
   it { should respond_to(:remember_token) }
-  it { should respond_to(:verified) }
   it { should respond_to(:verification_token) }
+  it { should respond_to(:username) }
 
   describe "without a name" do
     before { user.name = "" }
@@ -75,5 +75,35 @@ describe User do
       user.password_confirmation = "curry"
     end
     it { should_not be_valid }
+  end
+
+  describe "with an invalid username" do
+    ["msrose%", "ldskg_dg$", ""].each do |username|
+      before { user.username = username }
+      it { should_not be_valid }
+    end
+  end
+
+  describe "with a valid username" do
+    ["msrose", "hello.kitty", "blah_humbug", "-_.alkfj"].each do |username|
+      before { user.username = username }
+      it { should be_valid }
+    end
+  end
+
+  describe "with a capitalized username" do
+    before { user.username = "MICHAEL" }
+
+    it "downcases the username" do
+      user.save
+      user.username.should == "michael"
+    end
+  end
+
+  describe "with a duplicate username" do
+    before { @duplicate_user = FactoryGirl.build(:user, :username => user.name) }
+    specify { @duplicate_user.should_not be_valid }
+    before { @duplicate_user = FactoryGirl.build(:user, :username => user.name.upcase) }
+    specify { @duplicate_user.should_not be_valid }
   end
 end

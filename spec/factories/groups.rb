@@ -6,6 +6,7 @@ FactoryGirl.define do
     f.color_id { FactoryGirl.create(:color).id }
     f.collapsed { [true, false].sample }
     f.order_rank { rand(1..3) }
+    f.private { [true, false].sample }
     f.user_id { FactoryGirl.create(:user).id }
   end
 end
