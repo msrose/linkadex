@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_filter :get_action, :only => [:new, :create, :edit, :update]
   before_filter :set_user, :only => :show
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
-  before_filter :require_not_signed_in, :only => [:forgotten, :reset]
+  before_filter :require_not_signed_in, :only => [:new, :forgotten, :reset]
 
   def new
     @action = 'Sign up'
