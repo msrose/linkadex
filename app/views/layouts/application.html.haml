@@ -38,6 +38,12 @@
                 %li{ :class => controller_name == 'sessions' && action_name == 'new' ? 'active' : '' }= link_to 'Sign in', signin_path
     .container-fluid
       #modal.modal.hide.fade{ :tabindex => '-1', :role => 'dialog', 'aria-laballedby' => 'modal_label', 'aria-hidden' => 'true' }
+      #flash.row-fluid
+        .span12
+      - flash.each do |type, message|
+        .row-fluid
+          .span12
+            %div{ :class => "alert alert-#{type} flash" }= message
       .content
         .row-fluid
           .span12

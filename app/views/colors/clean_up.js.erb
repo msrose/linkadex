@@ -1,4 +1,5 @@
 <% @destroyed_ids.each do |id| %>
   $("#color<%= escape_javascript(id.to_s) %>").remove();
 <% end %>
-$("#flash").html("<div class='alert alert-success'>Unused colors have been purged!</div>");
+$("#flash .span12").html("<div class='alert alert-success flash'>Unused colors have been purged!</div>");
+$("#flash").show().delay(5000).fadeOut();
