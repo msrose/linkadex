@@ -1,6 +1,4 @@
 %h1= @user.name
-- if flash[:success]
-  .alert.alert-success= flash[:success]
 #public
   .groups
     = render :partial => 'dashboard/group', :collection => @groups, :as => 'group'

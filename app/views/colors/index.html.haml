@@ -1,6 +1,5 @@
 = link_to icon_for(:leaf) + ' Clean Up', clean_up_colors_path, :class => 'pull-right color-create btn', :remote => true, :method => :delete, :confirm => 'Delete all unused colors?'
 = link_to icon_for('plus-sign') + ' Create', new_color_path, :class => 'pull-right color-create btn', :remote => true
 %h1 Palette
-#flash
 #colors
   = render @colors

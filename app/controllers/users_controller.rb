@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       UserMailer.verification_email(@user, verify_users_url(:token => @user.verification_token)).deliver
-      flash[:welcome] = 'You have been sent an verification email: please read it to verfiy your account!'
+      flash[:info] = 'You have been sent an verification email: please read it to verfiy your account!'
       redirect_to signin_url
     else
       render :new
@@ -30,7 +30,7 @@ class UsersController < ApplicationController
         @user.unverify!
         sign_out
         UserMailer.verification_email(@user, verify_users_url(:token => @user.verification_token)).deliver
-        flash[:welcome] = 'You must reverify your account. Please check your email.'
+        flash[:info] = 'You must reverify your account. Please check your email.'
         redirect_to signin_path
       else
         flash[:success] = 'Account successfully updated.'
@@ -67,10 +67,10 @@ class UsersController < ApplicationController
       new_password = [('A'..'Z'), ('a'..'z'), (0..9)].map(&:to_a).flatten.sample(8).join
       @user.update_attributes(:password => new_password, :password_confirmation => new_password)
       UserMailer.forgotten_password(@user, new_password, signin_url).deliver
-      flash[:welcome] = 'Password successfully updated. Please check your email.'
+      flash[:info] = 'Password successfully reset. Please check your email.'
       redirect_to signin_url
     else
-      flash[:error] = 'Sorry, that email is not associated with an account.'
+      flash.now[:error] = 'Sorry, that email is not associated with an account.'
       render :forgotten
     end
   end
