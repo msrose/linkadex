@@ -3,5 +3,5 @@
   $("#flash").fadeOut();
 <% else %>
   $("#flash .span12").html('<div class="span12 alert alert-error flash">Color could not be deleted: still in use!</div>');
-  $("#flash").show();
+  $("#flash").show().delay(5000).fadeOut();
 <% end %>

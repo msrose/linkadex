@@ -2,4 +2,4 @@
   $("#color<%= escape_javascript(id.to_s) %>").remove();
 <% end %>
 $("#flash .span12").html("<div class='alert alert-success flash'>Unused colors have been purged!</div>");
-$("#flash").show();
+$("#flash").show().delay(5000).fadeOut();
