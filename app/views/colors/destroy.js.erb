@@ -1,6 +1,7 @@
 <% unless @color.in_use? %>
   $("#color<%= escape_javascript(@color.id.to_s) %>").fadeOut();
-  $("#flash div.alert.alert-error").fadeOut();
+  $("#flash").fadeOut();
 <% else %>
-  $("#flash").html('<div class="span12 alert alert-error">Color could not be deleted: still in use!</div>');
+  $("#flash .span12").html('<div class="span12 alert alert-error flash">Color could not be deleted: still in use!</div>');
+  $("#flash").show();
 <% end %>
