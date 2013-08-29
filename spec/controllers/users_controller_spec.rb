@@ -76,6 +76,13 @@ describe UsersController do
       response.should render_template :show
     end
 
+    it "renders the template with a dotted username" do
+      @user.update_attribute(:username, "michael.rose")
+      @user.reload
+      get :show, :username => @user.username
+      response.should render_template :show
+    end
+
     it "finds the correct user" do
       assigns(:user).should == @user
     end
