@@ -15,6 +15,12 @@ describe UsersController do
     it "provides the form button text action" do
       assigns(:action).should == 'Sign up'
     end
+
+    it "redirects to the home page if the user is signed in" do
+      override_authorization
+      get :new
+      response.should redirect_to user_path(@current_user)
+    end
   end
 
   describe "POST #create" do
