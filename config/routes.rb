@@ -36,6 +36,6 @@ Linkadex::Application.routes.draw do
 
   scope '/:username', :as => 'friendly' do
     root :to => 'users#show', :as => 'user'
-    get '/edit' => 'users#edit', :as => 'edit_user'
+    get '/account' => 'users#edit', :as => 'edit_user'
   end
 end
