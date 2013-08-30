@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_filter :get_action, :only => [:new, :create, :edit, :update]
-  before_filter :set_user, :only => :show
+  before_filter :get_user, :only => :show
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   before_filter :require_not_signed_in, :only => [:new, :forgotten, :reset]
 
@@ -34,7 +34,7 @@ class UsersController < ApplicationController
         redirect_to signin_path
       else
         flash[:success] = 'Account successfully updated.'
-        redirect_to @user
+        redirect_to friendly_user_url(@user.username)
       end
     else
       render :edit
@@ -87,20 +87,20 @@ class UsersController < ApplicationController
       params.require(:user).permit(:name, :email, :password, :password_confirmation, :username)
     end
 
+    def get_user
+      @user = User.find(params[:id]) rescue User.find_by_username(params[:username])
+    end
+
     def get_action
       @action = params[:action] =~ /new|create/ ? 'Sign up' : 'Update info'
     end
 
-    def set_user
-      @user = User.find_by_username(params[:username].downcase)
-    end
-
     def require_current_user
-      set_user
-      redirect_to @user unless @user == current_user
+      get_user
+      redirect_to friendly_user_url(@user.username) unless @user == current_user
     end
 
     def require_not_signed_in
-      redirect_to current_user if signed_in?
+      redirect_to friendly_user_url(current_user.username) if signed_in?
     end
 end

@@ -78,14 +78,14 @@ describe User do
   end
 
   describe "with an invalid username" do
-    ["msrose%", "ldskg_dg$", "", "groups", "michael.rose.html"].each do |username|
+    ["msrose%", "ldskg_dg$", "", "michael.rose", "michael_rose", "michael-rose"].each do |username|
       before { user.username = username }
       it { should_not be_valid }
     end
   end
 
   describe "with a valid username" do
-    ["msrose", "hello.kitty", "blah_humbug", "-_.alkfj"].each do |username|
+    ["msrose", "hellokitty235", "blahhumbug12345", "31535alkfj"].each do |username|
       before { user.username = username }
       it { should be_valid }
     end
@@ -101,9 +101,9 @@ describe User do
   end
 
   describe "with a duplicate username" do
-    before { @duplicate_user = FactoryGirl.build(:user, :username => user.name) }
+    before { @duplicate_user = FactoryGirl.build(:user, :username => user.username) }
     specify { @duplicate_user.should_not be_valid }
-    before { @duplicate_user = FactoryGirl.build(:user, :username => user.name.upcase) }
+    before { @duplicate_user = FactoryGirl.build(:user, :username => user.username.upcase) }
     specify { @duplicate_user.should_not be_valid }
   end
 end
