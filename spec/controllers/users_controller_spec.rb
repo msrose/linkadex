@@ -19,7 +19,7 @@ describe UsersController do
     it "redirects to the home page if the user is signed in" do
       override_authorization
       get :new
-      response.should redirect_to user_path(@current_user)
+      response.should redirect_to friendly_user_path(@current_user.username)
     end
   end
 
@@ -119,7 +119,7 @@ describe UsersController do
     context "without a signed in user" do
       it "redirects to the user show page" do
         get :edit, :id => @user.id
-        response.should redirect_to user_path(@user)
+        response.should redirect_to friendly_user_path(@user.username)
       end
     end
 
@@ -129,7 +129,7 @@ describe UsersController do
       it "doesn't let the user edit other users" do
         user2 = FactoryGirl.create(:user)
         get :edit, :id => user2.id
-        response.should redirect_to user_path(user2)
+        response.should redirect_to friendly_user_path(user2.username)
       end
 
       it "renders the edit template" do
@@ -150,7 +150,7 @@ describe UsersController do
 
       it "redirects to the user show page" do
         put :update, :id => @user.id
-        response.should redirect_to user_path(@user)
+        response.should redirect_to friendly_user_path(@user.username)
       end
     end
 
@@ -169,7 +169,7 @@ describe UsersController do
           end
 
           it "redirects to the users public profile" do
-            response.should redirect_to user_path(@current_user)
+            response.should redirect_to friendly_user_path(@current_user.username)
           end
         end
 
@@ -229,7 +229,7 @@ describe UsersController do
       end
 
       it "redirects to the user page" do
-        response.should redirect_to user_path(@current_user)
+        response.should redirect_to friendly_user_path(@current_user.username)
       end
     end
   end
@@ -242,7 +242,7 @@ describe UsersController do
       end
 
       it "redirects to the user page" do
-        response.should redirect_to user_path(@current_user)
+        response.should redirect_to friendly_user_path(@current_user.username)
       end
     end
 

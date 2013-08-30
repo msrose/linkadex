@@ -34,7 +34,7 @@ class UsersController < ApplicationController
         redirect_to signin_path
       else
         flash[:success] = 'Account successfully updated.'
-        redirect_to @user
+        redirect_to friendly_user_url(@user.username)
       end
     else
       render :edit
@@ -97,10 +97,10 @@ class UsersController < ApplicationController
 
     def require_current_user
       get_user
-      redirect_to @user unless @user == current_user
+      redirect_to friendly_user_url(@user.username) unless @user == current_user
     end
 
     def require_not_signed_in
-      redirect_to current_user if signed_in?
+      redirect_to friendly_user_url(current_user.username) if signed_in?
     end
 end
