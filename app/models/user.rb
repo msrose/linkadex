@@ -1,7 +1,6 @@
 class User < ActiveRecord::Base
   before_save { self.username.downcase! }
   validates :username, :format => { :with => /\A[A-Za-z0-9\-_.]+\z/ }, :uniqueness => { :case_sensitive => false }
-  validate :username_is_not_a_route
 
   has_many :groups, :dependent => :destroy
   has_many :links, :through => :groups
@@ -39,10 +38,6 @@ class User < ActiveRecord::Base
     self.save
   end
 
-  def to_param
-    self.username
-  end
-
   private
 
     def create_remember_token
@@ -55,12 +50,5 @@ class User < ActiveRecord::Base
 
     def validate_password?
       password.present? || password_confirmation.present?
-    end
-
-    def username_is_not_a_route
-      if self.errors[:username].blank?
-        route = Rails.application.routes.recognize_path(self.username) rescue nil
-        self.errors.add(:username, 'is illegal.') if route && route[:username].nil?
-      end
     end
 end
