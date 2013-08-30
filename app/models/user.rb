@@ -60,7 +60,7 @@ class User < ActiveRecord::Base
     def username_is_not_a_route
       if self.errors[:username].blank?
         route = Rails.application.routes.recognize_path(self.username) rescue nil
-        self.errors.add(:username, 'is illegal.') if route && (route[:username].nil? || route[:format].present?)
+        self.errors.add(:username, 'is illegal.') if route && route[:username].nil?
       end
     end
 end

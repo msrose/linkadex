@@ -78,7 +78,7 @@ describe User do
   end
 
   describe "with an invalid username" do
-    ["msrose%", "ldskg_dg$", "", "groups", "michael.rose.html"].each do |username|
+    ["msrose%", "ldskg_dg$", ""].each do |username|
       before { user.username = username }
       it { should_not be_valid }
     end
