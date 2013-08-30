@@ -6,6 +6,11 @@ class User < ActiveRecord::Base
 
   validates :name, :presence => true
 
+  before_save { self.username.downcase! }
+  VALID_USERNAME_REGEX = /\A[A-Za-z0-9]+\z/
+  validates :username, :format => { :with => VALID_USERNAME_REGEX }, :uniqueness => { :case_sensitive => false }
+  validate :username_is_not_a_route
+
   before_save { self.email.downcase! }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, :format => { :with => VALID_EMAIL_REGEX }, :uniqueness => { :case_sensitive => false }
@@ -47,5 +52,10 @@ class User < ActiveRecord::Base
 
     def validate_password?
       password.present? || password_confirmation.present?
+    end
+
+    def username_is_not_a_route
+      path = Rails.application.routes.recognize_path(self.username) rescue nil
+      self.errors.add(:username, 'is illegal') if path && path[:username].nil?
     end
 end
