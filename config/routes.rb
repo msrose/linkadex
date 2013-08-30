@@ -34,6 +34,11 @@ Linkadex::Application.routes.draw do
     end
   end
 
+  scope '/:username', :as => 'friendly' do
+    root :to => 'users#show', :as => 'user'
+    get '/edit' => 'users#edit', :as => 'edit_user'
+  end
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
