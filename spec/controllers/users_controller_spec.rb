@@ -95,6 +95,12 @@ describe UsersController do
       group = FactoryGirl.create(:group, :private => true, :user_id => @user.id)
       assigns(:groups).should_not include(group)
     end
+
+    it "responds to the friendly url" do
+      get :show, :username => @user.username
+      response.should render_template :show
+      assigns(:user).should == @user
+    end
   end
 
   describe "GET #index" do
@@ -139,6 +145,12 @@ describe UsersController do
 
       it "finds the correct user" do
         get :edit, :id => @user.id
+        assigns(:user).should == @user
+      end
+
+      it "responds to the friendly url" do
+        get :edit, :username => @user.username
+        response.should render_template :edit
         assigns(:user).should == @user
       end
     end
