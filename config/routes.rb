@@ -1,27 +1,4 @@
 Linkadex::Application.routes.draw do
-  get '/feed.:format' => 'dashboard#feed', :format => /json/
-
-  resources :users do
-    collection do
-      get 'verify' => 'users#verify'
-      get 'forgotten' => 'users#forgotten'
-      put 'reset' => 'users#reset'
-    end
-  end
-  get '/signup' => 'users#new'
-
-  resources :sessions, :only => [:new, :create, :destroy]
-  get '/signin' => 'sessions#new'
-  get '/signout' => 'sessions#destroy'
-
-  resources :groups, :except => :show do
-    resources :links, :except => :show
-  end
-
-  resources :colors, :except => :show do
-    delete 'clean-up' => 'colors#clean_up', :as => 'clean_up', :on => :collection
-  end
-
   namespace :about do
     root :to => 'static_pages#index'
     namespace :tutorials do
@@ -33,6 +10,29 @@ Linkadex::Application.routes.draw do
   end
 
   root :to => 'dashboard#home'
+
+  get '/feed.:format' => 'dashboard#feed', :format => /json/
+
+  resources :sessions, :only => [:new, :create, :destroy]
+  get '/signin' => 'sessions#new'
+  get '/signout' => 'sessions#destroy'
+  get '/signup' => 'users#new'
+
+  resources :groups, :except => :show do
+    resources :links, :except => :show
+  end
+
+  resources :colors, :except => :show do
+    delete 'clean-up' => 'colors#clean_up', :as => 'clean_up', :on => :collection
+  end
+
+  resources :users do
+    collection do
+      get 'verify' => 'users#verify'
+      get 'forgotten' => 'users#forgotten'
+      put 'reset' => 'users#reset'
+    end
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
