@@ -1,10 +1,6 @@
 = render :partial => 'shared/form_errors', :locals => { :object => @user }
 = form_for @user, :html => { :class => 'form-horizontal' } do |f|
   .control-group
-    = f.label :username, :class => 'control-label'
-    .controls
-      = f.text_field :username
-  .control-group
     = f.label :name, :class => 'control-label'
     .controls
       = f.text_field :name
