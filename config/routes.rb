@@ -31,12 +31,10 @@ Linkadex::Application.routes.draw do
     get 'forgotten' => 'users#forgotten', :as => 'forgotten_users'
     put 'reset' => 'users#reset', :as => 'reset_users'
   end
-  constraints :username => /[A-Za-z0-9\-_.]+?/, :format => /html/ do
-    get '/:username' => 'users#show', :as => 'user'
-    get '/:username/edit' => 'users#edit', :as => 'edit_user'
-    put '/:username' => 'users#update'
-    delete '/:username' => 'users#destroy'
-  end
+  get '/:username' => 'users#show', :as => 'user'
+  get '/:username/edit' => 'users#edit', :as => 'edit_user'
+  put '/:username' => 'users#update'
+  delete '/:username' => 'users#destroy'
 
   root :to => 'dashboard#home'
 
