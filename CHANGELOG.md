@@ -1,6 +1,8 @@
 # Linkadex Changelog
 
-# v1.9.0
+The current stable release of Linkadex is [1.9.0](https://github.com/msrose/linkadex/releases/tag/v1.9.0).
+
+## v1.9.0
 
 * New *About* and *Tutorials* pages to provide instructions to users.
 * User public profile.
