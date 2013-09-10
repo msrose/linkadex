@@ -1,5 +1,7 @@
 %h1 Sign Up
 = render 'form'
-.signin-here
+%p.signin-here
   Already have an account?
-  = link_to "Sign in here", signin_path
+  = link_to 'Sign in here', signin_path
+%p.learn-more
+  = link_to 'Learn more about Linkadex', about_root_path

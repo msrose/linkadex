@@ -15,7 +15,7 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
-module Linkage
+module Linkadex
   class Application < Rails::Application
     config.generators do |g|
       g.helper_specs false

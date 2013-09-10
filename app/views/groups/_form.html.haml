@@ -19,5 +19,9 @@
       .controls
         = f.check_box :collapsed
     .control-group
+      = f.label :private, "Private?", :checked => @group.private?, :class => 'control-label'
+      .controls
+        = f.check_box :private
+    .control-group
       .controls
         = f.submit "#{@verb} Group", :class => 'btn btn-primary'

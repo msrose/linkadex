@@ -20,7 +20,7 @@
   }
 }
 
-#home {
+#home, #public {
   width: 100%;
   .group {
     padding: 1em;
@@ -102,4 +102,13 @@
 
 .colorpicker {
   z-index: 1111;
+}
+
+#flash {
+  display: none;
+}
+
+.flash {
+  margin-top: 1em;
+  margin-bottom: 0em;
 }

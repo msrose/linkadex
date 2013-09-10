@@ -1,0 +1,4 @@
+%div{ :id => "user#{user.id}", :class => 'user' }
+  - link_count, group_count = user.links.count, user.groups.count
+  %h2= link_to user.name, friendly_user_path(user.username)
+  = "#{pluralize(link_count, 'link')} in #{pluralize(group_count, 'group')}"

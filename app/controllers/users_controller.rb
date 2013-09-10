@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
   before_filter :get_action, :only => [:new, :create, :edit, :update]
+  before_filter :get_user, :only => :show
+  before_filter :require_current_user, :only => [:edit, :update, :destroy]
+  before_filter :require_not_signed_in, :only => [:new, :forgotten, :reset]
 
   def new
     @action = 'Sign up'
@@ -10,11 +13,40 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       UserMailer.verification_email(@user, verify_users_url(:token => @user.verification_token)).deliver
-      flash[:welcome] = 'You have been sent an verification email: please read it to verfiy your account!'
+      flash[:info] = 'You have been sent an verification email: please read it to verfiy your account!'
       redirect_to signin_url
     else
       render :new
     end
+  end
+
+  def edit
+  end
+
+  def update
+    old_email = @user.email
+    if @user.update_attributes(user_params)
+      unless @user.email == old_email
+        @user.unverify!
+        sign_out
+        UserMailer.verification_email(@user, verify_users_url(:token => @user.verification_token)).deliver
+        flash[:info] = 'You must reverify your account. Please check your email.'
+        redirect_to signin_path
+      else
+        flash[:success] = 'Account successfully updated.'
+        redirect_to friendly_user_url(@user.username)
+      end
+    else
+      render :edit
+    end
+  end
+
+  def show
+    @groups = @user.groups.where(:private => false).includes(:links).order(:collapsed, :title)
+  end
+
+  def index
+    @users = User.order(:name)
   end
 
   def verify
@@ -26,13 +58,49 @@ class UsersController < ApplicationController
     end
   end
 
+  def forgotten
+  end
+
+  def reset
+    @user = User.find_by_email(params[:user][:email])
+    if @user
+      new_password = [('A'..'Z'), ('a'..'z'), (0..9)].map(&:to_a).flatten.sample(8).join
+      @user.update_attributes(:password => new_password, :password_confirmation => new_password)
+      UserMailer.forgotten_password(@user, new_password, signin_url).deliver
+      flash[:info] = 'Password successfully reset. Please check your email.'
+      redirect_to signin_url
+    else
+      flash.now[:error] = 'Sorry, that email is not associated with an account.'
+      render :forgotten
+    end
+  end
+
+  def destroy
+    @user.destroy
+    sign_out
+    redirect_to signin_url
+  end
+
   private
 
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :username)
+    end
+
+    def get_user
+      @user = User.find(params[:id]) rescue User.find_by_username(params[:username])
     end
 
     def get_action
       @action = params[:action] =~ /new|create/ ? 'Sign up' : 'Update info'
+    end
+
+    def require_current_user
+      get_user
+      redirect_to friendly_user_url(@user.username) unless @user == current_user
+    end
+
+    def require_not_signed_in
+      redirect_to friendly_user_url(current_user.username) if signed_in?
     end
 end

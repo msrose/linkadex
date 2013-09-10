@@ -26,6 +26,8 @@ $(document).ready(function() {
     $("body").css({ overflow: "hidden" });
     $("#modal .colorpicker-input").colorpicker();
   });
+
+  $(".flash").closest(".row-fluid").delay(5000).fadeOut();
 });
 
 $(document).on("change", ".color-select", function(event) {
