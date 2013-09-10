@@ -39,7 +39,7 @@ Link + index = Linkadex. Which is essentially what Linkadex is, an index page fo
 
 > How do I get started with Linkadex?
 
-Visit the [home page](https://linkadex.herokuapp.com). Here you can sign up for an account, and after receiving your verification email you're all set. Please see the [docs](https://linkadex.herokuapp.com/docs) for more information on how to use the application.
+Visit the [home page](https://linkadex.herokuapp.com). Here you can sign up for an account, and after receiving your verification email you're all set. Please see the [about page](https://linkadex.herokuapp.com/about) for more information on how to use the application.
 
 ## Terminology
 
@@ -55,6 +55,7 @@ Configuration options for groups include:
 | color      | The [color](#colors) that is associated with the group                                                                                                | Yes       |
 | collapsed  | If `true`, the group's links will not be shown on the dashboard by default. If `false`, all links from the group will be visible.                     | Yes       |
 | order rank | An integer determining what order the groups are displayed in. Groups with lower numbers are displayed first. Overrides any other ordering of groups. | No        |
+| private    | If `true`, the group will not be shown on the user's public profile (only the user will be able to see the group).                                    | No        |
 
 ### Links
 
@@ -102,4 +103,4 @@ The clean-up option will delete any colors that are not being used by a group or
 
 ## Version Information
 
-The current stable release of Linkadex is [1.8.2](https://github.com/msrose/linkadex/releases/tag/v1.8.2).
+The current stable release of Linkadex is [1.9.0](https://github.com/msrose/linkadex/releases/tag/v1.9.0).
