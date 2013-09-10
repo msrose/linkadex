@@ -1,1 +1,18 @@
 %h1 Creating Links
+%p
+  Once you have signed in to your account you'll find yourself on the dashboard. You won't see anything here just yet, since you haven't created any links yet. First of all, click on the pencil in the top right corner of the page. This take you from
+  %em normal mode
+  into
+  %em edit mode.
+  From within edit mode, you can see a toolbar from which you can access all aspects of Linkadex.
+%h2 Creating colors
+%p The first thing you have to do to use Linkadex is create a color palette. Click on the Colors tab in the toolbar. This will take you to a page from which you can manage and personalize colors to be used for your bookmarks. Click on the Create button in the top right, and a dialog will come down. Create at least two colors by selecting a hex value and optional alias.
+%h2 Creating groups
+%p Click on the groups tab on the toolbar. From here you can create and manage groups, which are holders for your Linkadex bookmarks. Create one group for now by clicking on the Create button and specifying a title and selecting a color for the group.
+%h2 Creating links
+%p
+  Click on the group you just created. This will take you to the group page. You won't see anything here right now, since you haven't created any links for the group. Create your first link by clicking on the Create button in the top right corner and specifying a title, color, border color, and background color. Now navigate back to
+  = link_to 'your dashboard', root_path
+  and check out your very first link in your very first group. All links and groups will be displayed in this manner and you can return to
+  = link_to 'your color palette', colors_path
+  to customize the appearance however you'd like.
