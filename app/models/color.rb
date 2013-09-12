@@ -4,6 +4,8 @@ class Color < ActiveRecord::Base
   belongs_to :user
   before_save { |color| color.hex_value.upcase! }
 
+  default_scope order(:alias, :hex_value)
+
   validates :user_id, :presence => true
 
   VALID_COLOR_REGEX = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/

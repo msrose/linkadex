@@ -22,7 +22,7 @@ class ColorsController < ApplicationController
 
   def index
     @title = 'Colors - Linkadex'
-    @colors = current_user.colors.order('hex_value')
+    @colors = current_user.colors
   end
 
   def destroy
