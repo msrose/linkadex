@@ -25,6 +25,13 @@ describe ColorsController do
       get :index
       assigns(:title).should == 'Colors - Linkadex'
     end
+
+    it "orders the colors by alias" do
+      color1 = FactoryGirl.create(:color, :user_id => @current_user.id, :alias => "blahblah", :hex_value => "#000")
+      color2 = FactoryGirl.create(:color, :user_id => @current_user.id, :alias => "alalala", :hex_value => "#fff")
+      get :index
+      assigns(:colors).index(color1).should > assigns(:colors).index(color2)
+    end
   end
 
   describe "GET #new" do
