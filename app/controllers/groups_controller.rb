@@ -31,6 +31,16 @@ class GroupsController < ApplicationController
     @group.destroy
   end
 
+  def clone_toggle
+    @group = Group.find(params[:id])
+    @cloned = !current_user.cloned_groups.include?(@group)
+    if @cloned
+      Clone.create(:user_id => current_user.id, :group_id => @group.id)
+    else
+      Clone.find_by_user_id_and_group_id(current_user.id, @group.id).destroy
+    end
+  end
+
   private
 
     def group_params

@@ -1,5 +1,7 @@
 class Group < ActiveRecord::Base
   has_many :links, :dependent => :destroy
+  has_many :clones, :dependent => :destroy
+  has_many :cloned_users, :through => :clones, :source => :user
   belongs_to :color
   belongs_to :user
 

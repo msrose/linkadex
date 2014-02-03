@@ -108,4 +108,22 @@ describe GroupsController do
       expect { xhr :delete, :destroy, :id => group.id }.to change(Group, :count).by(-1)
     end
   end
+
+  describe "POSTT #clone_toggle" do
+    context "when the group is not a clone" do
+      it "clones the group to the current user" do
+        group_to_clone = FactoryGirl.create(:group, :user_id => FactoryGirl.create(:user).id)
+        expect { xhr :post, :clone_toggle, :id => group_to_clone.id }.to change(Clone, :count).by(1)
+        @current_user.cloned_groups.should include(group_to_clone)
+      end
+    end
+
+    context "when the group is a clone" do
+      it "unclones the group from the current user" do
+        Clone.create(:user_id => @current_user.id, :group_id => group.id)
+        expect { xhr :post, :clone_toggle, :id => group.id }.to change(Clone, :count).by(-1)
+        @current_user.cloned_groups.should_not include(group)
+      end
+    end
+  end
 end
