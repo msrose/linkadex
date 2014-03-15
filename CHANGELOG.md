@@ -1,6 +1,12 @@
 # Linkadex Changelog
 
-The current stable release of Linkadex is [1.9.0](https://github.com/msrose/linkadex/releases/tag/v1.9.0).
+The current stable release of Linkadex is [1.9.1](https://github.com/msrose/linkadex/releases/tag/v1.9.1).
+
+## v1.9.1
+
+* New public API, providing access to user group and link information. Can make GET requests at /api/v1/users/:username
+* Can no longer dismiss modal dialogs by clicking on the dark backdrop.
+* Order colors on color page by alias, the hex value
 
 ## v1.9.0
 
