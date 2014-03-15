@@ -9,6 +9,12 @@ Linkadex::Application.routes.draw do
     end
   end
 
+  namespace :api do
+    namespace :v1 do
+      get '/users/:username' => 'users#groups_with_links'
+    end
+  end
+
   root :to => 'dashboard#home'
 
   resources :sessions, :only => [:new, :create, :destroy]
