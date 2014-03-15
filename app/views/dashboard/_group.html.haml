@@ -1,7 +1,7 @@
 .row-fluid
   .group{ :id => "group#{group.id}", :style => "border: 0.2em solid #{group.color.hex_value}" }
     %h2
-      %span.collapse-toggle{ 'data-collapsed' => "#{group.collapsed?}" }= icon_for(group.collapsed? ? 'plus-sign' : 'minus-sign')
+      %span.collapse-toggle{ :data => { :collapsed => "#{group.collapsed?}" } }= icon_for(group.collapsed? ? 'plus-sign' : 'minus-sign')
       = edit_mode? && (controller_name != 'users' && action_name != 'show' || current_user == @user) ? (link_to group.title, group_links_path(group)) : group.title
     .links{ :style => "#{group.collapsed? ? 'display: none' : ''}" }
       - group.links.order(:title).each do |link|
