@@ -6,10 +6,6 @@ class DashboardController < ApplicationController
     @title = 'Dashboard - Linkadex'
   end
 
-  def feed
-    render :json => @groups, :callback => params[:callback], :root => false
-  end
-
   private
 
     def load_groups

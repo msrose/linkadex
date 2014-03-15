@@ -11,8 +11,6 @@ Linkadex::Application.routes.draw do
 
   root :to => 'dashboard#home'
 
-  get '/feed.:format' => 'dashboard#feed', :format => /json/
-
   resources :sessions, :only => [:new, :create, :destroy]
   get '/signin' => 'sessions#new'
   get '/signout' => 'sessions#destroy'
