@@ -4,14 +4,14 @@
       - if current_user != group.user
         - if current_user.cloned_groups.include?(group)
           = ("Cloned from " + (link_to group.user.name, friendly_user_path(group.user.username))).html_safe
-        = link_to (icon_for(current_clone?(group) ? 'eye-close' : 'eye-open') + " " + group.cloned_users.count.to_s).html_safe, current_clone?(group) ? unclone_group_path(group) : clone_group_path(group) , :remote => true, :class => "btn #{current_clone?(group) ? 'active' : ''}", :id => "clone#{group.id}", :method => :post
+        = link_to clone_button(group), clone_link(group), :remote => true, :class => clone_class(group), :id => "clone#{group.id}", :method => :post
     %h2
       %span.collapse-toggle{ :data => { :collapsed => "#{group.collapsed?}" } }= icon_for(group.collapsed? ? 'plus-sign' : 'minus-sign')
-      = edit_mode? && current_user == group.user && (controller_name != 'users' && action_name != 'show' || current_user == @user) ? (link_to group.title, group_links_path(group)) : group.title
+      = show_group_as_link?(group, @user) ? (link_to group.title, group_links_path(group)) : group.title
     .links{ :style => "#{group.collapsed? ? 'display: none' : ''}" }
       - group.links.order(:title).each do |link|
         = link_to link.title, link.href,
           :class => 'link',
           :id => "link#{link.id}",
           :target => '_' + link.target,
-          :style => "color: #{link.color.hex_value}; border: 0.3em solid #{link.border_color.hex_value}; background-color: #{link.background_color.hex_value}"
+          :style => link_styles(link)
