@@ -109,7 +109,7 @@ describe GroupsController do
     end
   end
 
-  describe "POSTT #clone_toggle" do
+  describe "POST #clone_toggle" do
     context "when the group is not a clone" do
       it "clones the group to the current user" do
         group_to_clone = FactoryGirl.create(:group, :user_id => FactoryGirl.create(:user).id)
