@@ -1,0 +1,2 @@
+$("#group<%= escaped_id(@group) %>").replaceWith("<%= escape_javascript(render :partial => 'dashboard/group', :locals => { :group => @group }) %>");
+

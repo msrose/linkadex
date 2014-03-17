@@ -15,18 +15,21 @@ if Rails.env.development?
   Color.destroy_all
   Group.destroy_all
   Link.destroy_all
+  Clone.destroy_all
 
   michael = User.create(:name => 'Michael',
                         :email => 'ekimsc1094@sympatico.ca',
                         :password => 'abc123',
-                        :password_confirmation => 'abc123')
+                        :password_confirmation => 'abc123',
+                        :username => 'msrose')
   michael.verify!
 
   5.times do
     User.create(:name => Faker::Name.name,
                 :email => Faker::Internet.email,
                 :password => 'random',
-                :password_confirmation => 'random')
+                :password_confirmation => 'random',
+                :username => Faker::Name.first_name.downcase)
   end
 
   User.all.each do |user|
@@ -55,6 +58,14 @@ if Rails.env.development?
                     :order_rank => rand(1..3),
                     :group_id => group.id)
       end
+    end
+  end
+
+  User.all.each do |user|
+    other_users = User.where("id != ?", user.id)
+    rand(5).times do
+      group_to_clone = other_users.sample.groups.sample
+      Clone.create(:group_id => group_to_clone.id, :user_id => user.id) unless user.cloned_groups.include?(group_to_clone)
     end
   end
 end

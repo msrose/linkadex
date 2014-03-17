@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130830033102) do
+ActiveRecord::Schema.define(:version => 20140203021711) do
+
+  create_table "clones", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "group_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "clones", ["group_id"], :name => "index_clones_on_group_id"
+  add_index "clones", ["user_id"], :name => "index_clones_on_user_id"
 
   create_table "colors", :force => true do |t|
     t.string   "hex_value"
