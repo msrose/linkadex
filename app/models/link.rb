@@ -10,5 +10,5 @@ class Link < ActiveRecord::Base
   validates :title, :presence => true, :uniqueness => { :scope => :group_id }
   validates :href, :format => { :with => URI.regexp }, :uniqueness => { :scope => :group_id }
 
-  default_scope includes(:color, :border_color, :background_color).order(:order_rank)
+  default_scope includes(:color, :border_color, :background_color).order(:order_rank, :title)
 end

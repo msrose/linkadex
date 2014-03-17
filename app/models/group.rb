@@ -9,5 +9,5 @@ class Group < ActiveRecord::Base
 
   validates :title, :presence => true, :uniqueness => { :scope => :user_id }
 
-  default_scope includes(:color).order(:order_rank)
+  default_scope includes(:color).order(:order_rank, :title)
 end
