@@ -1,0 +1,2 @@
+$("#comment<%= j(@comment.id.to_s) %>").fadeOut();
+$("#comment_count<%= j(@group.id.to_s) %>").text("<%= j(@group.comments.count.to_s) %>");

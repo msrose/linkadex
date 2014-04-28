@@ -1,0 +1,1 @@
+$("#edit_comment_<%= j(@comment.id.to_s) %>").parent().replaceWith("<%= j(render @comment) %>");

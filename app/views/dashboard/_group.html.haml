@@ -15,3 +15,10 @@
           :id => "link#{link.id}",
           :target => '_' + link.target,
           :style => link_styles(link)
+    .comments
+      .pull-right
+        = link_to icon_for(:comment), group_comments_path(group), :remote => true
+        %span{ :id => "comment_count#{group.id}" }= group.comments.count
+      %div{ :id => "comments_wrapper#{group.id}", :data => { :load => true.to_s } }
+        %div{ :id => "comments#{group.id}" }
+        %div{ :id => "comment_form#{group.id}" }

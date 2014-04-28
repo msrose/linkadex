@@ -1,0 +1,6 @@
+<% if @comment.valid? %>
+  console.log("hiey")
+  $("#comments<%= j(@group.id.to_s) %>").append("<%= j(render @comment) %>");
+  $("#comment_text_field<%= j(@group.id.to_s) %>").val("");
+  $("#comment_count<%= j(@group.id.to_s) %>").text("<%= j(@group.comments.count.to_s) %>");
+<% end %>

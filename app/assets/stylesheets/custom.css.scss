@@ -47,6 +47,26 @@
         text-decoration: none;
       }
     }
+    .comments {
+      overflow: hidden;
+      div[id^="comments_wrapper"] {
+        display: none;
+        clear: both;
+        .comment {
+          padding-top: 0.75em;
+          padding-bottom: 0.75em;
+          border-bottom: 0.1em solid #f1f1f1;
+        }
+        .comment-user {
+          text-align: right;
+          font-weight: bold;
+        }
+        .comment-body {
+          margin-left: 4em;
+          word-wrap: break-word;
+        }
+      }
+    }
   }
 }
 

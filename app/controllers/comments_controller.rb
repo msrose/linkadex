@@ -1,15 +1,15 @@
 class CommentsController < ApplicationController
   before_filter :require_signed_in_user
-  before_filter :find_group, :only => [:index, :create]
-  before_filter :find_comment, :only => [:edit, :update, :destroy]
+  before_filter :find_group
+  before_filter :find_comment, :require_current_user, :only => [:edit, :update, :destroy]
 
   def index
     @comments = @group.comments
   end
 
   def create
-    @comment = current_user.comments.new(comment_params)
-    @comment.group = @group
+    @comment = @group.comments.new(comment_params)
+    @comment.user = current_user
     @comment.save
   end
 
@@ -35,6 +35,10 @@ class CommentsController < ApplicationController
     end
 
     def find_comment
-      @comment = current_user.comments.find(params[:id])
+      @comment = @group.comments.find(params[:id])
+    end
+
+    def require_current_user
+      redirect_to root_url unless @comment.user == current_user
     end
 end

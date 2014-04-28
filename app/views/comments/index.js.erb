@@ -1,0 +1,9 @@
+var $div = $("#comments_wrapper<%= j(@group.id.to_s) %>");
+if($div.data("load")) {
+  $("#comments<%= j(@group.id.to_s) %>").html("<%= j(render @comments) %>");
+  $("#comment_form<%= j(@group.id.to_s) %>").html("<%= j(render :partial => 'form', :locals => { :group => @group, :comment => @group.comments.new }) %>");
+  $div.data("load", false);
+} else {
+  $div.data("load", true);
+}
+$div.slideToggle();

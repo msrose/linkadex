@@ -1,0 +1,7 @@
+%div.row-fluid.comment{ :id => "comment#{comment.id}" }
+  .span2.comment-user= comment.user.name
+  .span8.comment-body= comment.body
+  - if current_user == comment.user
+    .span1
+      = link_to icon_for(:edit), edit_group_comment_path(comment.group, comment), :remote => true
+      = link_to icon_for(:remove), [comment.group, comment], :method => :delete, :remote => true, :confirm => "Delete comment?"

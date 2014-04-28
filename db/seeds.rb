@@ -16,6 +16,7 @@ if Rails.env.development?
   Group.destroy_all
   Link.destroy_all
   Clone.destroy_all
+  Comment.destroy_all
 
   michael = User.create(:name => 'Michael',
                         :email => 'ekimsc1094@sympatico.ca',
@@ -66,6 +67,12 @@ if Rails.env.development?
     rand(5).times do
       group_to_clone = other_users.sample.groups.sample
       Clone.create(:group_id => group_to_clone.id, :user_id => user.id) unless user.cloned_groups.include?(group_to_clone)
+    end
+  end
+
+  Group.all.each do |group|
+    rand(10).times do
+      group.comments.create(:user_id => User.all.sample.id, :body => Faker::Lorem.sentence)
     end
   end
 end

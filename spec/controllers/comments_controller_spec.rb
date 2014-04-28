@@ -4,7 +4,7 @@ describe CommentsController do
   before { override_authorization }
 
   let(:group) { FactoryGirl.create(:group) }
-  let(:comment) { FactoryGirl.create(:comment, :user_id => @current_user.id) }
+  let(:comment) { FactoryGirl.create(:comment, :group_id => group.id) }
 
   describe "GET #index" do
     before { xhr :get, :index, :group_id => group.id }
@@ -37,7 +37,7 @@ describe CommentsController do
   end
 
   describe "GET #edit" do
-    before { xhr :get, :edit, :id => comment.id }
+    before { xhr :get, :edit, :group_id => group.id, :id => comment.id }
 
     it "renders the edit template" do
       expect(response).to render_template(:edit)
@@ -51,7 +51,7 @@ describe CommentsController do
   describe "PUT #update" do
     context "with valid attributes" do
       it "updates the comment" do
-        xhr :put, :update, :id => comment.id, :comment => FactoryGirl.attributes_for(:comment, :body => "Michael")
+        xhr :put, :update, :id => comment.id, :group_id => group.id, :comment => FactoryGirl.attributes_for(:comment, :body => "Michael")
         comment.reload
         expect(comment.body).to eq("Michael")
       end
@@ -60,7 +60,7 @@ describe CommentsController do
     context "with invalid attributes" do
       it "does not update the comment" do
         body = comment.body
-        xhr :put, :update, :id => comment.id, :comment => FactoryGirl.attributes_for(:comment, :body => "")
+        xhr :put, :update, :id => comment.id, :group_id => group.id, :comment => FactoryGirl.attributes_for(:comment, :body => "")
         comment.reload
         expect(comment.body).to eq(body)
       end
@@ -69,13 +69,13 @@ describe CommentsController do
 
   describe "DELETE #destroy" do
     it "finds the correct comment" do
-      xhr :delete, :destroy, :id => comment.id
+      xhr :delete, :destroy, :group_id => group.id, :id => comment.id
       expect(assigns(:comment)).to eq(comment)
     end
 
     it "destroys the comment" do
       comment
-      expect { xhr :delete, :destroy, :id => comment.id }.to change(Comment, :count).by(-1)
+      expect { xhr :delete, :destroy, :group_id => group.id, :id => comment.id }.to change(Comment, :count).by(-1)
     end
   end
 end

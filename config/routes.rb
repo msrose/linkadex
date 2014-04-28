@@ -26,10 +26,8 @@ Linkadex::Application.routes.draw do
     post '/clone' => 'groups#clone_toggle', :on => :member
     post '/unclone' => 'groups#clone_toggle', :on => :member
     resources :links, :except => :show
-    resources :comments, :only => [:create, :index]
+    resources :comments, :except => :show
   end
-
-  resource :comments, :only => [:edit, :update, :destroy]
 
   resources :colors, :except => :show do
     delete 'clean-up' => 'colors#clean_up', :as => 'clean_up', :on => :collection
