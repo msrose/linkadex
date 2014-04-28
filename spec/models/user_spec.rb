@@ -21,6 +21,7 @@ describe User do
   it { should respond_to(:verification_token) }
   it { should respond_to(:username) }
   it { should respond_to(:cloned_groups) }
+  it { should respond_to(:comments) }
 
   describe "without a name" do
     before { user.name = "" }
