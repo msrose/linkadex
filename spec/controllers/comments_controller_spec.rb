@@ -4,7 +4,7 @@ describe CommentsController do
   before { override_authorization }
 
   let(:group) { FactoryGirl.create(:group) }
-  let(:comment) { FactoryGirl.create(:comment, :group_id => group.id) }
+  let(:comment) { FactoryGirl.create(:comment, :group_id => group.id, :user_id => @current_user.id) }
 
   describe "GET #index" do
     before { xhr :get, :index, :group_id => group.id }
