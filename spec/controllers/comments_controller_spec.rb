@@ -77,5 +77,14 @@ describe CommentsController do
       comment
       expect { xhr :delete, :destroy, :group_id => group.id, :id => comment.id }.to change(Comment, :count).by(-1)
     end
+
+    it "allows users to delete any comment from their own groups" do
+      other_comment = FactoryGirl.create(:comment,
+                                         :group_id => FactoryGirl.create(:group, :user_id => @current_user.id).id,
+                                         :user_id => FactoryGirl.create(:user).id)
+      expect do
+        xhr :delete, :destroy, :group_id => other_comment.group.id, :id => other_comment.id
+      end.to change(Comment, :count).by(-1)
+    end
   end
 end

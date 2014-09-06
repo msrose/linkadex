@@ -2,4 +2,4 @@
   = form_for [group, comment], :remote => true, :html => { :class => 'form-inline' } do |f|
     .span11.offset2
       = f.text_field :body, :class => 'span9', :id => "comment_text_field#{group.id}"
-      = f.submit "Comment", :class => 'btn btn-primary'
+      = f.submit "#{action_name == 'edit' ? "Update " : ""}Comment", :class => 'btn btn-primary'
