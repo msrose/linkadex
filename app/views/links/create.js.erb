@@ -1,6 +1,13 @@
 <% if @link.valid? %>
   $("#modal").modal("hide");
-  $("#links").append("<%= escape_javascript(render @link) %>")
+  <% if @destination == "links" %>
+    $("#links").append("<%= j(render @link) %>");
+  <% elsif @destination == "dashboard" %>
+    $("#group<%= j(@group.id.to_s) %>").replaceWith("<%= j(render :partial => 'dashboard/group', :locals => { :group => @group }) %>");
+    if($("#group<%= j(@group.id.to_s) %> .collapse-toggle").data("collapsed")) {
+      $("#group<%= j(@group.id.to_s) %> .collapse-toggle i").click();
+    }
+  <% end %>
 <% else %>
-  $("#modal").html("<%= escape_javascript(render 'form') %>");
+  $("#modal").html("<%= j(render 'form') %>");
 <% end %>

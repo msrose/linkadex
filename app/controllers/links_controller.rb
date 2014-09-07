@@ -4,10 +4,12 @@ class LinksController < ApplicationController
   before_filter :load_targets, :load_colors, :only => [:new, :edit, :create, :update]
 
   def new
+    @destination = params[:destination] || "links"
     @link = @group.links.new
   end
 
   def create
+    @destination = params[:link][:destination] || "links"
     @link = @group.links.new(link_params)
     @link.save
   end
