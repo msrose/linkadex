@@ -1,5 +1,3 @@
-- unless edit_mode?
-  .row-fluid= link_to icon_for(:pencil), root_path(:mode => 'edit'), :class => 'pull-right', :title => 'Edit mode'
 - if current_user.colors.empty?
   .alert.alert-notice
     Start using Linkadex by
