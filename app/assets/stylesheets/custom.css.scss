@@ -132,3 +132,13 @@
   margin-top: 1em;
   margin-bottom: 0em;
 }
+
+#normal_wrapper {
+  position: fixed;
+  background-color: white;
+  z-index: 10000;
+  #normal_menu {
+    position: relative;
+    right: 1.5em;
+  }
+}

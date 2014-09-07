@@ -47,3 +47,21 @@ $(document).on("click", "span.collapse-toggle i", function(event) {
   parentSpan.data("collapsed", !isCollapsed);
   $(this).closest("h2").next(".links").slideToggle();
 });
+
+function globalCollapseToggle(event, collapsed) {
+  $("span.collapse-toggle i").each(function() {
+    var $this = $(this);
+    if($this.parent().data("collapsed") != collapsed) {
+      $this.click();
+    }
+  });
+  event.preventDefault();
+}
+
+$(document).on("click", "#expand_all", function(event) {
+  globalCollapseToggle(event, false);
+});
+
+$(document).on("click", "#collapse_all", function(event) {
+  globalCollapseToggle(event, true);
+});
