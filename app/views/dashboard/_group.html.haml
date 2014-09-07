@@ -5,7 +5,7 @@
         - if current_user.cloned_groups.include?(group)
           = ("Cloned from " + (link_to group.user.name, friendly_user_path(group.user.username))).html_safe
         = link_to clone_button(group), clone_link(group), :remote => true, :class => clone_class(group), :id => "clone#{group.id}", :method => :post
-      - elsif edit_mode? && controller_name == "dashboard"
+      - elsif edit_mode? && controller_name != "users"
         = link_to icon_for(:plus), new_group_link_path(group, :destination => controller_name), :remote => true, :class => 'btn'
     %h2
       %span.collapse-toggle{ :data => { :collapsed => "#{group.collapsed?}" } }= icon_for(group.collapsed? ? 'plus-sign' : 'minus-sign')
