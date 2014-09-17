@@ -100,6 +100,17 @@ describe GroupsController do
         group.title.should == old_title
       end
     end
+
+    context "when the group is private" do
+      it "destroys all clones" do
+        clone = FactoryGirl.create(:clone, :group_id => group.id)
+        group.clones.count.should be > 0
+        @new_attrs[:private] = true
+        xhr :put, :update, :id => group.id, :group => @new_attrs
+        group.reload
+        group.clones.count.should == 0
+      end
+    end
   end
 
   describe "DELETE #destroy" do
@@ -112,7 +123,7 @@ describe GroupsController do
   describe "POST #clone_toggle" do
     context "when the group is not a clone" do
       it "clones the group to the current user" do
-        group_to_clone = FactoryGirl.create(:group, :user_id => FactoryGirl.create(:user).id)
+        group_to_clone = FactoryGirl.create(:group, :user_id => FactoryGirl.create(:user).id, :private => false)
         expect { xhr :post, :clone_toggle, :id => group_to_clone.id }.to change(Clone, :count).by(1)
         @current_user.cloned_groups.should include(group_to_clone)
       end
@@ -120,9 +131,27 @@ describe GroupsController do
 
     context "when the group is a clone" do
       it "unclones the group from the current user" do
-        Clone.create(:user_id => @current_user.id, :group_id => group.id)
+        FactoryGirl.create(:clone, :user_id => @current_user.id, :group_id => group.id)
         expect { xhr :post, :clone_toggle, :id => group.id }.to change(Clone, :count).by(-1)
         @current_user.cloned_groups.should_not include(group)
+      end
+    end
+
+    context "when the group belongs to the current user" do
+      it "does not clone the group" do
+        group.private = false
+        group.save
+        group.reload
+        expect { xhr :post, :clone_toggle, :id => group.id }.not_to change(Clone, :count)
+      end
+    end
+
+    context "when the group is private" do
+      it "does not clone the group" do
+        group.private = true
+        group.save
+        group.reload
+        expect { xhr :post, :clone_toggle, :id => group.id }.not_to change(Clone, :count)
       end
     end
   end

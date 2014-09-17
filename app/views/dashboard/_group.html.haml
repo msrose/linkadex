@@ -11,6 +11,8 @@
     %h2
       %span.collapse-toggle{ :data => { :collapsed => "#{group.collapsed?}" } }= icon_for(group.collapsed? ? 'plus-sign' : 'minus-sign')
       = show_group_as_link?(group, @user) ? (link_to group.title, group_links_path(group)) : group.title
+      - if group.private?
+        %span.private-icon{ :title => "Private Group" }= icon_for(:lock)
     .links{ :style => "#{group.collapsed? ? 'display: none' : ''}" }
       - group.links.order(:title).each do |link|
         = link_to link.title, link.href,
