@@ -24,7 +24,7 @@ describe SessionsController do
       before do
         @user = FactoryGirl.create(:user, :password => "michael", :password_confirmation => "michael")
         @user.verify!
-        post :create, :session => { :email => @user.email, :password => "michael"  }
+        post :create, :session => { :email_or_username => @user.email, :password => "michael"  }
       end
 
       it "signs the user in" do
@@ -40,8 +40,20 @@ describe SessionsController do
       end
     end
 
+    context "when logging in with username" do
+      before do
+        @user = FactoryGirl.create(:user, :password => "michael", :password_confirmation => "michael")
+        @user.verify!
+        post :create, :session => { :email_or_username => @user.username, :password => "michael"  }
+      end
+
+      it "signs the user in" do
+        controller.should be_signed_in
+      end
+    end
+
     context "with invalid sign in credentials" do
-      before { post :create, :session => { :email => "adghkalkgd", :password => "aldgndg" } }
+      before { post :create, :session => { :email_or_username => "adghkalkgd", :password => "aldgndg" } }
 
       it "renders the new template" do
         response.should render_template :new
