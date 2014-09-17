@@ -26,7 +26,7 @@
     padding: 1em;
     margin-bottom: 0.5em;
     margin-top: 0.5em;
-    span.collapse-toggle {
+    span.collapse-toggle, span.private-icon {
       margin-right: 0.2em;
       margin-left: 0.25em;
       i {
@@ -34,6 +34,9 @@
         top: 0.25em;
         cursor: pointer;
       }
+    }
+    span.private-icon i {
+      cursor: default;
     }
     a.link {
       text-align: center;
