@@ -19,6 +19,7 @@ class GroupsController < ApplicationController
     @group = current_user.groups.find(params[:id])
     @group.assign_attributes(group_params)
     @group.save
+    @group.clones.destroy_all if @group.private?
   end
 
   def index
@@ -29,6 +30,15 @@ class GroupsController < ApplicationController
   def destroy
     @group = current_user.groups.find(params[:id])
     @group.destroy
+  end
+
+  def clone_toggle
+    @group = Group.find(params[:id])
+    if !current_user.cloned_groups.include?(@group)
+      Clone.create(:user_id => current_user.id, :group_id => @group.id) if !@group.private? && !current_user.groups.include?(@group)
+    else
+      Clone.find_by_user_id_and_group_id(current_user.id, @group.id).destroy
+    end
   end
 
   private

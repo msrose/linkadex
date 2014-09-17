@@ -1,6 +1,21 @@
 # Linkadex Changelog
 
-The current stable release of Linkadex is [1.9.0](https://github.com/msrose/linkadex/releases/tag/v1.9.0).
+The current stable release of Linkadex is [1.10.0](https://github.com/msrose/linkadex/releases/tag/v1.10.0).
+
+## v1.10.0
+
+* Users can now "clone" groups from other users; cloned groups show up on a user's dashboard and remain synchronized with the owner as links are added and removed
+* Fix bug where API shows private groups
+* Let users comment on groups
+* Users can now add links to groups directly from the dashboard
+* Users can now sign in with their usernames as well as email addresses
+* Change menu and provide more menu options in Normal mode
+
+## v1.9.1
+
+* New public API, providing access to user group and link information. Can make GET requests at /api/v1/users/:username
+* Can no longer dismiss modal dialogs by clicking on the dark backdrop.
+* Order colors on color page by alias, the hex value
 
 ## v1.9.0
 

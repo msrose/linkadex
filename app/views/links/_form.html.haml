@@ -2,6 +2,7 @@
 .modal-body
   = render :partial => 'shared/form_errors', :locals => { :object => @link }
   = form_for [@group, @link], :remote => true, :html => { :class => 'form-horizontal' } do |f|
+    = f.hidden_field :destination, :value => @destination
     .control-group
       = f.label :title, :class => 'control-label'
       .controls

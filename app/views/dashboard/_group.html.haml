@@ -1,12 +1,29 @@
 .row-fluid
   .group{ :id => "group#{group.id}", :style => "border: 0.2em solid #{group.color.hex_value}" }
+    .pull-right
+      - if signed_in?
+        - if current_user != group.user
+          - if current_user.cloned_groups.include?(group)
+            = ("Cloned from " + (link_to group.user.name, friendly_user_path(group.user.username))).html_safe
+          = link_to clone_button(group), clone_link(group), :remote => true, :class => clone_class(group), :id => "clone#{group.id}", :method => :post
+        - elsif edit_mode? && controller_name != "users"
+          = link_to icon_for(:plus), new_group_link_path(group, :destination => controller_name), :remote => true, :class => 'btn'
     %h2
       %span.collapse-toggle{ :data => { :collapsed => "#{group.collapsed?}" } }= icon_for(group.collapsed? ? 'plus-sign' : 'minus-sign')
-      = edit_mode? && (controller_name != 'users' && action_name != 'show' || current_user == @user) ? (link_to group.title, group_links_path(group)) : group.title
+      = show_group_as_link?(group, @user) ? (link_to group.title, group_links_path(group)) : group.title
+      - if group.private?
+        %span.private-icon{ :title => "Private Group" }= icon_for(:lock)
     .links{ :style => "#{group.collapsed? ? 'display: none' : ''}" }
       - group.links.order(:title).each do |link|
         = link_to link.title, link.href,
           :class => 'link',
           :id => "link#{link.id}",
           :target => '_' + link.target,
-          :style => "color: #{link.color.hex_value}; border: 0.3em solid #{link.border_color.hex_value}; background-color: #{link.background_color.hex_value}"
+          :style => link_styles(link)
+    .comments
+      .pull-right
+        = link_to icon_for(:comment), group_comments_path(group), :remote => signed_in?
+        %span{ :id => "comment_count#{group.id}" }= group.comments.count
+      %div{ :id => "comments_wrapper#{group.id}", :data => { :load => true.to_s } }
+        %div{ :id => "comments#{group.id}" }
+        %div{ :id => "comment_form#{group.id}" }

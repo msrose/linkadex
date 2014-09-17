@@ -4,7 +4,8 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by_email(params[:session][:email].downcase)
+    login = params[:session][:email_or_username].downcase
+    user = User.find_by_email(login) || User.find_by_username(login)
     if user && user.authenticate(params[:session][:password]) && user.verified?
       sign_in(user)
       self.current_user = user

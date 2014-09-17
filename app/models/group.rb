@@ -1,5 +1,8 @@
 class Group < ActiveRecord::Base
   has_many :links, :dependent => :destroy
+  has_many :clones, :dependent => :destroy
+  has_many :cloned_users, :through => :clones, :source => :user
+  has_many :comments, :dependent => :destroy
   belongs_to :color
   belongs_to :user
 
@@ -9,5 +12,5 @@ class Group < ActiveRecord::Base
 
   validates :title, :presence => true, :uniqueness => { :scope => :user_id }
 
-  default_scope includes(:color).order(:order_rank)
+  default_scope includes(:color).order(:order_rank, :title)
 end

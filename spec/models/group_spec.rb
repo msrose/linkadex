@@ -15,6 +15,8 @@ describe Group do
   it { should respond_to(:collapsed) }
   it { should respond_to(:order_rank) }
   it { should respond_to(:user) }
+  it { should respond_to(:cloned_users) }
+  it { should respond_to(:comments) }
 
   describe "without a title" do
     before { group.title = " " }

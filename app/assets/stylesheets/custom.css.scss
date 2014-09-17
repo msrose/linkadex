@@ -26,7 +26,7 @@
     padding: 1em;
     margin-bottom: 0.5em;
     margin-top: 0.5em;
-    span.collapse-toggle {
+    span.collapse-toggle, span.private-icon {
       margin-right: 0.2em;
       margin-left: 0.25em;
       i {
@@ -34,6 +34,9 @@
         top: 0.25em;
         cursor: pointer;
       }
+    }
+    span.private-icon i {
+      cursor: default;
     }
     a.link {
       text-align: center;
@@ -45,6 +48,26 @@
       border-radius: 2em;
       &:hover {
         text-decoration: none;
+      }
+    }
+    .comments {
+      overflow: hidden;
+      div[id^="comments_wrapper"] {
+        display: none;
+        clear: both;
+        .comment {
+          padding-top: 0.75em;
+          padding-bottom: 0.75em;
+          border-bottom: 0.1em solid #f1f1f1;
+        }
+        .comment-user {
+          text-align: right;
+          font-weight: bold;
+        }
+        .comment-body {
+          margin-left: 4em;
+          word-wrap: break-word;
+        }
       }
     }
   }
@@ -111,4 +134,14 @@
 .flash {
   margin-top: 1em;
   margin-bottom: 0em;
+}
+
+#normal_wrapper {
+  position: fixed;
+  background-color: white;
+  z-index: 10000;
+  #normal_menu {
+    position: relative;
+    right: 1.5em;
+  }
 }

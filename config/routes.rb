@@ -23,7 +23,10 @@ Linkadex::Application.routes.draw do
   get '/signup' => 'users#new'
 
   resources :groups, :except => :show do
+    post '/clone' => 'groups#clone_toggle', :on => :member
+    post '/unclone' => 'groups#clone_toggle', :on => :member
     resources :links, :except => :show
+    resources :comments, :except => :show
   end
 
   resources :colors, :except => :show do

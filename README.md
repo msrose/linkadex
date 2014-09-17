@@ -103,4 +103,4 @@ The clean-up option will delete any colors that are not being used by a group or
 
 ## Version Information
 
-The current stable release of Linkadex is [1.9.0](https://github.com/msrose/linkadex/releases/tag/v1.9.0).
+Please see the [CHANGELOG](./CHANGELOG.md)

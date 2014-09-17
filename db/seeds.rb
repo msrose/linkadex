@@ -11,24 +11,31 @@ def random_hex
 end
 
 if Rails.env.development?
-  User.destroy_all
-  Color.destroy_all
-  Group.destroy_all
-  Link.destroy_all
+  puts "Destroying all users..."       and User.destroy_all
+  puts "Destroying all colors..."      and Color.destroy_all
+  puts "Destroying all groups..."      and Group.destroy_all
+  puts "Destroying all links..."       and Link.destroy_all
+  puts "Destroying clone relations..." and Clone.destroy_all
+  puts "Destroying all comments..."    and Comment.destroy_all
 
+  puts "Creating Michael..."
   michael = User.create(:name => 'Michael',
                         :email => 'ekimsc1094@sympatico.ca',
                         :password => 'abc123',
-                        :password_confirmation => 'abc123')
+                        :password_confirmation => 'abc123',
+                        :username => 'msrose')
   michael.verify!
 
+  puts "Creating users..."
   5.times do
     User.create(:name => Faker::Name.name,
                 :email => Faker::Internet.email,
                 :password => 'random',
-                :password_confirmation => 'random')
+                :password_confirmation => 'random',
+                :username => Faker::Name.first_name.downcase)
   end
 
+  puts "Creating colors...", "Creating groups...", "Creating links..."
   User.all.each do |user|
     10.times do
       Color.create(:hex_value => random_hex,
@@ -57,4 +64,22 @@ if Rails.env.development?
       end
     end
   end
+
+  puts "Creating clone relations..."
+  User.all.each do |user|
+    other_users = User.where("id != ?", user.id)
+    rand(5).times do
+      group_to_clone = other_users.sample.groups.sample
+      Clone.create(:group_id => group_to_clone.id, :user_id => user.id) unless user.cloned_groups.include?(group_to_clone)
+    end
+  end
+
+  puts "Creating comments..."
+  Group.all.each do |group|
+    rand(10).times do
+      group.comments.create(:user_id => User.all.sample.id, :body => Faker::Lorem.sentence)
+    end
+  end
+
+  puts "Done."
 end
