@@ -1,15 +1,17 @@
 source 'https://rubygems.org'
 
-ruby '2.0.0'
-gem 'rails', '3.2.13'
+ruby '2.4.10'
+gem 'rails', '3.2.22.5'
 gem 'bootstrap-sass'
 gem 'strong_parameters'
 gem 'haml-rails'
 gem 'active_model_serializers'
 gem 'bcrypt-ruby'
+gem 'json', '~> 1.8.6'
+gem 'bigdecimal', '1.4.2'
 
 group :development, :test do
-  gem 'sqlite3'
+  gem 'sqlite3', '~> 1.3.6'
   gem 'rspec-rails'
   gem 'guard-rspec'
   gem 'guard-spork'
@@ -36,5 +38,5 @@ group :test do
 end
 
 group :production do
-  gem 'pg'
+  gem 'pg', '~> 0.21'
 end
