@@ -2,7 +2,8 @@ source 'https://rubygems.org'
 
 # Rails 3.2 doesn't work on Ruby >= 2.4, but Heroku only supports down to 2.4 on heroku-18.
 # https://devcenter.heroku.com/articles/ruby-support#oldest-available-runtimes
-# I did mad hacks to get rails to work on 2.4 to buy at least a year.
+# I did mad hacks to get rails to work on 2.4 to buy at least a year before heroku-18 is canned.
+# https://github.com/msrose/linkadex/issues/123
 ruby '2.4.10'
 
 gem 'rails', '3.2.22.5'
